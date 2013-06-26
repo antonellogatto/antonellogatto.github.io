@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -64,40 +64,65 @@
   </nav>
   </div>
 
+  <!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#floors">Floors</a></li>
+      <li><a href="#stairs">Stairs</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#windows">Windows</a></li>
+      <li><a href="#complete_house">Complete</a></li>
+    </ul>
+  </div>
+
   <!-- MAIN CONTENT -->
   <div id='main_content_wrap' class='outer'>
     <section id='main_content' class='inner'>
-      <h3>Farnsworth House</h3>
+        <h3>Farnsworth House Development</h3>
 
-        <p>Designed and built by <a href='van_der_rohe.html'>Ludwig Mies van der Rohe</a> from 1946 to 1951, Farnsworth House is considered a paradigm of international style architecture in America. Ludwig van der Rohe was retained by Dr. Edith Farnsworth to design a one-room weekend retreat in a once-rural setting, located 55 miles (89 km) southwest of Chicago's downtown on a 60-acre (24 ha) estate site. The Farnsworth House is considered a seminal example of International Style architecture as it was introduced to the United States.</p>
-        <img src='images/house0.jpg' />
-        <p>
-          As van der Rohe quotes: 
-          <blockquote>'The essentials for living are floor and roof. Everything else is proportion and nature.' </blockquote>
-          The house was created in order to enable its inhabitants to experience the rural silence and the passing of the seasons.
+        <h4><a name='floors' class='anchor' href="#floors">Floors</a></h4>
+
+        <p>The house is essentially one single open room with an extensive us of floor-to-ceiling glass.
+        After the creation of the terrain, in the 3D model are built three CUBOIDs respectivly: one for the the linking floor between the house and the terrain, one for the house floor (used also as roof) and one for a higher and larger roof.
         </p>
-        <img src='images/houses3.jpg' />
-        <p>The essential characteristic of the house is immediately apparent: the interior appears to be a single open room.<br>
-        The extensive use of clear floor-to-ceiling glass opens the interior to its natural surroundings to an extreme degree.  
-        The building is essentially one large room filled with freestanding elements.</p>
-        <img src='images/house2.jpg' />
+        <img src='images/floors.jpg' />
 
-        Sources: <a href='http://en.wikipedia.org/wiki/Farnsworth_House'>en.wikipedia</a> - <a href='http://it.wikipedia.org/wiki/Casa_Farnsworth'>it.wikipedia</a> - <a href='http://www.columbia.edu/cu/gsapp/BT/GATEWAY/FARNSWTH/farnswth.html'>columbia.edu</a>
+        <h4><a name='stairs' class='anchor' href="#stairs">Stairs</a></h4>
 
-        <pre><code>$ cd your_repo_root/repo_name
-            $ git fetch origin
-            $ git checkout gh-pages</code></pre>
+        <p>Every step is a CUBOID([0.8, 0.15, 7.5]). In the lower stair there are 4 steps translated of ([0.8, 0.35]) on ([0, 1]) axises from the lower step. In the higher stair there are 5 step translated of ([0.8, 0.5]) on ([0, 1]) axis from the lower step. The last step is bigger then is a double step. Under the two stair ther is a structure to support them: they are CUBOIDs properly translated and rotated.
+        </p>
+        <img src='images/stairs.jpg' />
+
+        <h4><a name='pillars' class='anchor' href="#pillars">Pillars</a></h4>
+
+        <p>Every pillar is a CUBOID 0.5*0.5 on x*z; there are two kind of pillars, just the height is different: 1.6 or 10. There are three rows of pillars. The first one is composed just by three little pillars. The middle one contains one smaller pillar and four taller pillars. The last one has just four smaller pillars. The first and the second rows are far from each other for 10 on z axis(the width of the first floor); the second and the third one for 25 (the width of the second floor).
+        </p>
+        <img src='images/pillars.jpg' />
+
+        <h4><a name='windows' class='anchor' href="#windows">Windows</a></h4>
+
+        <p>Allw the windows are CUBOIDs with 0.1 depth and 10 height (the height between the second floor and the roof); coloured by [200/255, 200/255, 200/255, 0.5] - the trasparency give us the idea of a window. The windows are different just for the width, and everyone is far from the nexts for 0.25, that is the width of fixtures, created with CUBOID([0.25, 4.9, 0.25]) and properly translated.
+        </p>
+        <img src='images/windows_fixtures.jpg' />
+
+        <h4><a name='complete_house' class='anchor' href="#complete">Complete House</a></h4>
+
+        <p>
+
+        </p>
+        <img src='images/houses0.jpg' />
+        <img src='images/houses1.jpg' />
+        <img src='images/houses2.jpg' />
 
       </section>
     </div>
 
-    <!-- FOOTER  -->
+ <!-- FOOTER  -->
     <div id='footer_wrap' class='outer'>
       <footer class='inner'>
         <p>Published with <a href='http://pages.github.com'>GitHub Pages</a></p>
       </footer>
     </div>
-
     
 
   </body>

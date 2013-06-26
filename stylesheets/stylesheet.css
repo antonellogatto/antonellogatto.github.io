@@ -205,7 +205,7 @@ ul li {
 }
 
 ol li {
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 dl dt {
@@ -275,7 +275,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 80%;
+  max-width: 75%;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -325,35 +325,37 @@ Full-Width Styles
 }
 
 #downloads {
+  text-decoration: none;
   position: relative;
+  right: -10%;
   z-index: 10;
-  bottom: -13px;
-  right: -8%;
+  bottom: -11px;
 }
 
 .zip_download_link {
   display:block;
   float:right;
   z-index:11;
-  position: relative;
-  right: -8%;
-  bottom:10px;
-  width: 45px;
+  position: absolute;
+  right: 7%;
+  bottom:15%;
+  width: 65px;
   height:50px;
   overflow: hidden;
-  background: url(../images/sprite_download_greyzip.png) no-repeat bottom left;
+  background: url(../images/sprite_download_greyzip.png) ;
 }
 
 .tar_download_link {
   display:block;
-  right: -8%;
+  float:right;
   z-index:11;
   position: absolute;
-  bottom:10px;
-  width: 50px;
+  right:2%;
+  bottom:15%;
+  width: 65px;
   height:50px;
   overflow: hidden;
-  background: url(../images/sprite_download_greytar.png) no-repeat bottom right;
+  background: url(../images/sprite_download_greytar.png);
 }
 
 
@@ -371,6 +373,16 @@ Full-Width Styles
   background: #212121;
 }
 
+/*******************************************************************************
+Side Menu Styles
+*******************************************************************************/
+
+#side_menu{
+  position:fixed;
+  z-index: 100;
+  top:60%;
+  left:5px;
+}
 
 
 /*******************************************************************************
