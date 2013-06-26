@@ -200,12 +200,10 @@ ul, ol, dl {
 }
 
 ul li {
-  list-style: inside;
   padding-left: 20px;
 }
 
 ol li {
-  list-style: decimal inside;
   padding-left: 20px;
 }
 
@@ -306,7 +304,7 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding: 50px 10px 0px 10px;
 }
 
 #project_title {
@@ -326,43 +324,37 @@ Full-Width Styles
 }
 
 #downloads {
-  position: absolute;
-  width: 210px;
+  position: relative;
   z-index: 10;
-  bottom: -40px;
-  right: 0;
-  height: 70px;
-  background: url('../images/icon_download.png') no-repeat 0% 90%;
+  bottom: -13px;
+  right: -8%;
 }
 
 .zip_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
+  display:block;
+  float:right;
+  z-index:11;
+  position: relative;
+  right: -8%;
+  bottom:10px;
+  width: 45px;
+  height:50px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
+  background: url(../images/sprite_download_greyzip.png) no-repeat bottom left;
 }
 
 .tar_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
+  display:block;
+  right: -8%;
+  z-index:11;
+  position: absolute;
+  bottom:10px;
+  width: 50px;
+  height:50px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom right;
-  margin-left: 10px;
+  background: url(../images/sprite_download_greytar.png) no-repeat bottom right;
 }
 
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
-}
-
-.tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
-}
 
 #main_content_wrap {
   background: #f2f2f2;
