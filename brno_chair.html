@@ -89,18 +89,20 @@
 
         <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
 
-        <p>The function brno_chair build a 3D model just taking the color of the pillows as a parameter. The legs of the chair are built drawing a series of points on ([0, 1]) axes, mapping them with bezier using the function bs2() to create the side surface, and extruding them with EXTRUDE([0.16]) - or EXTRUDE([2.05]) for the trasversal bars.</p>
+        <p>The function brno_chair build a 3D model just taking the color of the pillows as a parameter. The legs of the chair are built drawing a series of points on ([0, 1]) axes, mapping them with bezier using the function <a href="model.html#bs2">bs2()</a> to create the side surface, and extruding them with EXTRUDE([0.16]) - or EXTRUDE([2.05]) for the trasversal bars.</p>
         <img src='images/brno_legs.jpg' />
 
         <h4><a name='pillows' class='anchor' href="#pillows">Pillows</a></h4>
 
-        <p>The same technique is used for the pillows. An array of two sequences of points draws the lateral surface, mapped with bs2() and then extruded of ([2.05]). The bottom pillow and the back pillow are created in different times, although they could be created together. All the pillows are then structed and colored by the parameter passed before.</p>
+        <p>The same technique is used for the pillows. An array of two sequences of points draws the lateral surface, mapped with <a href="model.html#bs2">bs2()</a> and then extruded of ([2.05]). The bottom pillow and the back pillow are created in different times, although they could be created together. All the pillows are then structed and colored by the parameter passed before.</p>
         <img src='images/brno_pillows.jpg' />
 
         <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
 
         <p>Legs and pillows are then structed.</p>
         <img src='images/brnos0.jpg' />
+
+        <p><a href="model.html#brno">View code</a></p>
 
         <p>Sources: <a href='http://en.wikipedia.org/wiki/Brno_Chair'>en.wikipedia</a></p>
       </section>

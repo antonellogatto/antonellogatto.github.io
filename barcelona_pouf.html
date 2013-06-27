@@ -68,7 +68,6 @@
   <!--SIDE MENU-->
   <div id='side_menu'>
     <ul>
-      <li><a href="#descr">Description</a></li>
       <li><a href="#legs">Legs</a></li>
       <li><a href="#ropes">Ropes</a></li>
       <li><a href="#pillow">Pillow</a></li>
@@ -81,19 +80,13 @@
   <div id='main_content_wrap' class='outer'>
     <section id='main_content' class='inner'>
       
-
         <h3>Barcelona Pouf</h3>
-
-        <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
-
-        <p>blabla
-        </p>
 
         <img src='images/pouf0.jpg' />
 
         <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
 
-        <p>The legs are built drawing the curves with sequences of points. Then they are mapped through bs2() function and extruded by ([0.16]). The trasversal bars are extruded by ([2.78]), the distance between the sides legs.
+        <p>The legs are built drawing the curves with sequences of points. Then they are mapped through <a href="model.html#bs2">bs2()</a> function and extruded by ([0.16]). The trasversal bars are extruded by ([2.78]), the distance between the sides legs.
         </p>
         <img src='images/pouf_legs.jpg' />
 
@@ -106,13 +99,13 @@
         <h4><a name='pillow' class='anchor' href="#pillow">Pillow</a></h4>
 
         <p>The base pillow is generated thanks to a second-grade NUBS line. It is Bezier-mapped before with an inside point, creating the first surface; then a 0.3-higher replica of the curve is created, and Bezier-mapped with the first one to create the side surface; the first operation is applied to the second NUBS line to create the upper surface.
-        The stuffed square on the top of the pillow are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function bs3() that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions.
+        The stuffed square on the top of the pillow are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function <a href="model.html#bs3">bs3()</a> that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions.
         </p>
         <img src='images/pouf_pillow.jpg' />
 
         <h4><a name='details' class='anchor' href="#details">Details</a></h4>
 
-        <p>The pillow buttons are simplest CYLINDER(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
+        <p>The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
         </p>
         <img src='images/pouf_details.jpg' />
 
@@ -122,6 +115,7 @@
         </p>
         <img src='images/poufs0.jpg' />
 
+        <p><a href="model.html#pouf">View code</a></p>
        <p>Sources: <a href=''></a></p>
 
       </section>
