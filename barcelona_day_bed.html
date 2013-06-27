@@ -98,19 +98,19 @@
 
         <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
 
-        <p>In order to create the ropes, we can draw the points of the side surface of the first rope, of height 0.03. 
+        <p>In order to create the ropes, we can draw the points of the side surface of the first rope, of height 0.03, Bezier-map them through <a href="model.html#bs2">bs2()</a> and then EXTRUDE([0.5]). Then the rope is replicated 11 times and translated properly.
         </p>
         <img src='images/bed_ropes.jpg' />
 
         <h4><a name='mattress' class='anchor' href="#mattress">Mattress</a></h4>
 
-        <p>
+        <p>The main mattress is a CUBOID([12.27, 5.25, 0.45]). The stuffed square on the top of the mattress are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function <a href="model.html#bs3">bs3()</a> that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions to fill the mattress surface. The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
         </p>
         <img src='images/bed_mattress.jpg' />
 
         <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
 
-        <p>
+        <p>In the end has been added a cylindrical pillow. Everything is structed and mattress, pillow and buttons colored properly. The result of the function <a href="model.html#bed">barcelona_day_bed()</a> is a good Plasm.js 3D model of the Mies van der Rohe's Barcelona Day Bed.
         </p>
         <img src='images/beds0.jpg' />
 

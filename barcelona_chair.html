@@ -85,40 +85,38 @@
         <h3>Barcelona Chair</h3>
 
         <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
+        <p>As a rising figure of the modernist movement, Ludwig Mies van der Rohe was selected to design the Weimar Republic’s Pavilion for the Barcelona Industrial Exposition of 1929. Through masterful proportioning and planning, Mies created a rhythmic and entirely unprecedented space, which elevated industrial-age materials to a level of grace never before achieved. Inside, Mies included chairs and stools conceived as a resting place for the King and Queen of Spain. Determined to create a chair worthy of royalty, Mies is thought to have based the designs, with their signature crisscross frames, on the campaign chairs of Ancient Rome.</p>
 
-        <p>As a rising figure of the modernist movement, Ludwig Mies van der Rohe was selected to design the Weimar Republic’s Pavilion for the Barcelona Industrial Exposition of 1929. Through masterful proportioning and planning, Mies created a rhythmic and entirely unprecedented space, which elevated industrial-age materials to a level of grace never before achieved. Inside, Mies included chairs and stools conceived as a resting place for the King and Queen of Spain. Determined to create a chair worthy of royalty, Mies is thought to have based the designs, with their signature crisscross frames, on the campaign chairs of Ancient Rome. Mies: “I feel that it must be possible to harmonize the old and new in our civilization.”
-        </p>
+        <img src='images/brc4.jpg' />
 
+        <blockquote>“I feel that it must be possible to harmonize the old and new in our civilization.”</blockquote>
+        
         <img src='images/brc3.jpg' />
-
 
         <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
 
-        <p>
-        </p>
+        <p>The model can be created starting from the skeleton of the chair: the legs. Every edge of the chair is drawn by a sequence of points: 18 points are necessaries to draw all the edges of the chair. Then the function <a href="model.html#bs2">bs2()</a> Bezier-map all the combination between the edges to create the surfaces the define the skeleton. SIMPLICIAL_COMPLEX has been used to fill the empty between the legs curve surfaces.</p>
         <img src='images/brc_chair_legs.jpg' />
 
         <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
 
-        <p>
-        </p>
+        <p>Broken lines are necessary to build up the ropes where will be placed the bottom pillow. Four sequences of points can individuate the four sides edges of a singular rope; NUBS(S0)(1)(knots)(points) can be used to create a broken line from these points - grade = 1 because we need a broken line = grade 1. After the definition of the edges we can create the surfaces between them thanks to <a href="model.html#bs2">bs2()</a> or just Bezier-mapping on S1 two edges at time. Once one rope is generated, the function REPLICA(9) let us create the sequence of ropes properly translated. The same technique can be used for the 8 ropes on the back of the chair. All the ropes are then structed and colored of black.</p>
         <img src='images/brc_chair_ropes.jpg' />
 
         <h4><a name='pillows' class='anchor' href="#pillows">Pillows</a></h4>
 
-        <p>
+        <p>The rounded sides surfaces of the pillows has been created Bezier-mapping through <a href="model.html#bs3">bs3()</a> the two sequences of points that draw the upper and bottom edge of each side and the middle sequence of points that has been approximated by the function. Then, the upper and bottom surface have been created passing the points of two opposites edges as parameters through <a href="model.html#bs2">bs2()</a>. The stuffed square on the top of the pillows are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated, again through <a href="model.html#bs3">bs3()</a>. Then the stuffed square is replicated in the two dimensions to fill the pillow surface.
         </p>
         <img src='images/brc_chair_pillows.jpg' />
 
         <h4><a name='details' class='anchor' href="#details">Details</a></h4>
 
-        <p>
-        </p>
+        <p>The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.</p>
         <img src='images/brc_chair_details.jpg' />
 
         <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
 
-        <p>
+        <p>Legs, ropes, pillows and buttons are structed the last two coloured with the array passed through the call to the function. The result of the function <a href="model.html#brc_chair">barcelona_chair()</a> is a perfect Plasm.js 3D model of the Mies van der Rohe's Barcelona Chair.
         </p>
         <img src='images/brc_chairs0.jpg' />
         <img src='images/brc_chairs2.jpg' />
