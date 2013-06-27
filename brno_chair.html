@@ -44,6 +44,7 @@
         <ul>
           <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
           <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
+          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
         </ul>
       </li>
       <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
@@ -71,6 +72,7 @@
       <li><a href="#descr">Description</a></li>
       <li><a href="#legs">Legs</a></li>
       <li><a href="#pillows">Pillows</a></li>
+      <li><a href="#complete">Complete</a></li>
     </ul>
   </div>
 
@@ -82,32 +84,25 @@
 
         <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
 
-        <p>
-
-        </p>
-        <img src='images/brno_chair.jpg' />
+        <p>The Brno chair (model number MR50) is a modernist cantilever chair designed by Ludwig Mies van der Rohe and Lilly Reich in 1929-1930. The Brno chair has become a modern furniture classic. It has very clean lines, consisting of a steel frame in a single piece, bent into a C-shape from the middle of the back, round past the front edge of seat (to create arms), and back under the seat to create a cantilever, with taut seat and back upholstered in leather. </p>
+        <img src='images/brno0.jpg' />
 
         <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
 
-        <p>
-
-        </p>
+        <p>The function brno_chair build a 3D model just taking the color of the pillows as a parameter. The legs of the chair are built drawing a series of points on ([0, 1]) axes, mapping them with bezier using the function bs2() to create the side surface, and extruding them with EXTRUDE([0.16]) - or EXTRUDE([2.05]) for the trasversal bars.</p>
         <img src='images/brno_legs.jpg' />
 
         <h4><a name='pillows' class='anchor' href="#pillows">Pillows</a></h4>
 
-        <p>
-
-        </p>
+        <p>The same technique is used for the pillows. An array of two sequences of points draws the lateral surface, mapped with bs2() and then extruded of ([2.05]). The bottom pillow and the back pillow are created in different times, although they could be created together. All the pillows are then structed and colored by the parameter passed before.</p>
         <img src='images/brno_pillows.jpg' />
 
+        <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
 
+        <p>Legs and pillows are then structed.</p>
+        <img src='images/brnos0.jpg' />
 
-
-
-
-
-
+        <p>Sources: <a href='http://en.wikipedia.org/wiki/Brno_Chair'>en.wikipedia</a></p>
       </section>
     </div>
 

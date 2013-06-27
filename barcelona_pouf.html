@@ -44,6 +44,7 @@
         <ul>
           <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
           <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
+          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
         </ul>
       </li>
       <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
@@ -64,28 +65,75 @@
   </nav>
   </div>
 
+  <!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#descr">Description</a></li>
+      <li><a href="#legs">Legs</a></li>
+      <li><a href="#ropes">Ropes</a></li>
+      <li><a href="#pillow">Pillow</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#complete">Complete</a></li>
+    </ul>
+  </div>
+
   <!-- MAIN CONTENT -->
   <div id='main_content_wrap' class='outer'>
     <section id='main_content' class='inner'>
       
 
+        <h3>Barcelona Pouf</h3>
 
+        <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
 
+        <p>blabla
+        </p>
 
+        <img src='images/pouf0.jpg' />
 
+        <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
 
+        <p>The legs are built drawing the curves with sequences of points. Then they are mapped through bs2() function and extruded by ([0.16]). The trasversal bars are extruded by ([2.78]), the distance between the sides legs.
+        </p>
+        <img src='images/pouf_legs.jpg' />
 
+        <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
+
+        <p>To create the ropes that support the pillow we don't need a curve but a broken line is enough. So, after creating the sequences of points, these can be mapped through NUBS(S0)(1)(knots)(points070) - the grade is 1 because we need just a broken line. With the 2 edges created by the points we can obtain the side surface mapping them by Bezier and then extruding them of ([0.22]). The rest of the ropes are generated thanks to REPLICA(7)([rope, T([2])([0.22+0.20])]) function.
+        </p>
+        <img src='images/pouf_ropes.jpg' />
+
+        <h4><a name='pillow' class='anchor' href="#pillow">Pillow</a></h4>
+
+        <p>The base pillow is generated thanks to a second-grade NUBS line. It is Bezier-mapped before with an inside point, creating the first surface; then a 0.3-higher replica of the curve is created, and Bezier-mapped with the first one to create the side surface; the first operation is applied to the second NUBS line to create the upper surface.
+        The stuffed square on the top of the pillow are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function bs3() that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions.
+        </p>
+        <img src='images/pouf_pillow.jpg' />
+
+        <h4><a name='details' class='anchor' href="#details">Details</a></h4>
+
+        <p>The pillow buttons are simplest CYLINDER(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
+        </p>
+        <img src='images/pouf_details.jpg' />
+
+        <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
+
+        <p>Legs, ropes, pillow and buttons are structed and the last two coloured with the array passed through the call to the function. 
+        </p>
+        <img src='images/poufs0.jpg' />
+
+       <p>Sources: <a href=''></a></p>
 
       </section>
     </div>
 
-
-     <!-- FOOTER  -->
+ <!-- FOOTER  -->
     <div id='footer_wrap' class='outer'>
       <footer class='inner'>
         <p>Published with <a href='http://pages.github.com'>GitHub Pages</a></p>
       </footer>
     </div>
+    
 
   </body>
   </html>
