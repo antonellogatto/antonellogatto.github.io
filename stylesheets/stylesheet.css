@@ -373,7 +373,7 @@ Small Device Styles
     font-size:14px;
   }
 
-  #downloads {
+  #downloads, .zip_download_link, .tar_download_link {
     display: none;
   }
 
