@@ -1,107 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset='utf-8' />
-  <meta http-equiv='X-UA-Compatible' content='chrome=1' />
-  <meta name='description' content='Antonellogatto.github.io : cvdlab-cg final project' />
-
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-
-  <link href="stylesheets/menu.css" media="screen" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/iconic.css" media="screen" rel="stylesheet" type="text/css" />
-  
-  <link rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylesheet.css'>
-
-  <script src="javascripts/prefix-free.js"></script>
-  <style>
-  #side_menu{
-    font-size:14px;
-    top:40%;
-  }</style>
-  <title>Antonellogatto.github.io</title>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <div id='header_wrap' class='outer'>
-    <header class='inner'>
-      <a id='forkme_banner' href='https://github.com/antonellogatto'>View on GitHub</a>
-
-      <h1 id='project_title'>Farnsworth House Interior Elements</h1>
-      <h2 id='project_tagline'>Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto</h2>
-
-    </header>
-  </div>
-
-  <!-- NAVBAR -->
-  <div id="navbar">
-  <nav>
-    <ul class="menu">
-      <li><a href="house.html"><span class="iconic home"></span>  Farnsworth House</a>
-        <ul>
-          <li><a href='house_development.html'><span class="iconic "></span>  Development</a></li>
-          <li><a href="house_location.html"><span class="iconic map-pin"></span>  Location</a></li>
-        </ul>
-      </li>
-      <li><a href="office_set.html"><span class="iconic pencil"></span>  Office Set</a>
-        <ul>
-          <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
-          <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
-          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
-        </ul>
-      </li>
-      <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
-        <ul>
-          <li><a href="barcelona_chair.html"><span class="iconic"></span>  Barcelona Chair</a></li>
-          <li><a href="barcelona_pouf.html"><span class="iconic"></span>  Barcelona Pouf</a></li>
-          <li><a href="barcelona_day_bed.html"><span class="iconic"></span>  Barcelona Day Bed</a></li>
-          <li><a href="barcelona_table.html"><span class="iconic"></span>  Barcelona Table</a></li>
-        </ul>
-      </li>
-      <li><a href="model.html"><span class="iconic fullscreen"></span> Plasm.js 3D Model</a></li>
-      <li><a href="van_der_rohe.html"><span class="iconic document"></span>  Ludwig Mies van der Rohe</a></li>
-      <li><a href="aboutme.html"><span class="iconic user"></span>  About Me</a></li>
-    </ul>
-    <a href='zipball/final-project.zip' ><li class="zip_download_link"></li></a>
-    <a href='tarball/final-project.tar' ><li class="tar_download_link"></li></a>
-    <div class="clearfix"></div>
-  </nav>
-  </div>
-
-<!--SIDE MENU-->
-  <div id='side_menu'>
-    <ul>
-      <li><a href="#support">Support</a></li>
-      <li><a href="#cylinder">CYLINDER()</a></li>
-      <li><a href="#bs2">bs2()</a></li>
-      <li><a href="#bs3">bs3()</a></li>
-      <li><a href="#house">farnsworth_house()</a></li>
-      <li><a href="#desk">farnsworth_desk()</a></li>
-      <li><a href="#brno">brno_chair()</a></li>
-      <li><a href="#box">boot_box()</a></li>
-      <li><a href="#bed">barcelona_day_bed()</a></li>
-      <li><a href="#pouf">barcelona_pouf()</a></li>
-      <li><a href="#table">barcelona_table()</a></li>
-      <li><a href="#brc_chair">barcelona_chair()</a></li>
-    </ul>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <div id='main_content_wrap' class='outer'>
-    <section id='main_content' class='inner'>
-
-    <img src='images/livings.jpg' />
-
-      <pre><code>
 //improve domains intervals for a better quality
 
 var domain1D = DOMAIN([[0, 1]])([8]);
 var domain2D = DOMAIN([[0, 1],[0, 1]])([8, 8]);
 var detailed_domain2D = DOMAIN([[0, 1], [0, 1]])([32, 32]);
-<a name='support' class='anchor' href="#support"></a>
-var <a name='cylinder' class='anchor' href="#cylinder">CYLINDER</a> = function(r,h){
+
+var CYLINDER = function(r,h){
   function C0(l){
   var s = CYL_SURFACE([r,h])(l);
   var b1 = DISK(r)(l);
@@ -113,18 +16,18 @@ var <a name='cylinder' class='anchor' href="#cylinder">CYLINDER</a> = function(r
 
 //2-curves bezier surface
 
-var <a name='bs2' class='anchor' href="#bs2">bs2</a> = function(l){
-  var p1 = l[0];
-  var p2 = l[1];
-  var c1 = BEZIER(S0)(p1);
-  var c2 = BEZIER(S0)(p2);
-  //DRAW(STRUCT([MAP(c1)(domain1D),MAP(c2)(domain1D),MAP(c3)(domain1D)]));
-  return MAP(BEZIER(S1)([c1, c2]))(domain2D);
+var bs2 = function(l){
+	var p1 = l[0];
+	var p2 = l[1];
+	var c1 = BEZIER(S0)(p1);
+	var c2 = BEZIER(S0)(p2);
+	//DRAW(STRUCT([MAP(c1)(domain1D),MAP(c2)(domain1D),MAP(c3)(domain1D)]));
+	return MAP(BEZIER(S1)([c1, c2]))(domain2D);
 }
 
 //3-curves bezier surface
 
-var <a name='bs3' class='anchor' href="#bs3">bs3</a> = function(l){
+var bs3 = function(l){
   p1 = l[0];
   p2 = l[1];
   p3 = l[2];
@@ -138,7 +41,7 @@ var <a name='bs3' class='anchor' href="#bs3">bs3</a> = function(l){
 var BLACK = [50/255, 50/255, 50/255];
 var BROWN = [202/255, 141/255, 72/255];
 
-var <a name='house' class='anchor' href="#house">farnsworth_house</a> = function(){
+var farnsworth_house = function(){
 
   //terrain
   var terrain = COLOR([10/255, 100/255, 0])(T([1, 2])([-0.1, -5])(CUBOID([50, 0.1, 70])));
@@ -195,7 +98,7 @@ var <a name='house' class='anchor' href="#house">farnsworth_house</a> = function
 var house = S([0, 1, 2])([2, 2, 2])(farnsworth_house());
 DRAW(house);
 
-var <a name='desk' class='anchor' href="#desk">farnsworth_desk</a> = function (color) {
+var farnsworth_desk = function (color) {
 
 var leg0 = CYLINDER(0.1, 3)([12, 1]);
 var legs = STRUCT([T([0, 1])([0.2, 0.7]), leg0, T([0])([4-0.4])(leg0), T([1])([7-1.4]), leg0, T([0])([4-0.4])(leg0)]);
@@ -221,7 +124,7 @@ return STRUCT([bs, cs, T([1])([-7.25-1.25])(cs), legs, T([2])([3]), COLOR(color)
 var desk = T([0, 1, 2])([39.5, 8.2, 45])(R([0,2])([-PI/2])(R([1,2])([-PI/2])(farnsworth_desk(BROWN))));
 DRAW(desk);
 
-var <a name='brno' class='anchor' href="#brno">brno_chair</a> = function(color){
+var brno_chair = function(color){
 
   var points100 = [[2.98, 3], [2.63, 5.23], [2.62, 5.53], [4.76, 5.26]];
   var points101 = [[2.91, 3], [2.55, 5.35], [2.55, 5.59], [4.78, 5.32]];
@@ -263,7 +166,7 @@ var brno_chair2 = T([0, 1, 2])([42, 5.62, 50])(R([0,2])([-PI/2])(brno_chair(BROW
 DRAW(brno_chair1);
 DRAW(brno_chair2);
 
-var <a name='box' class='anchor' href="#box">boot_box</a> = function (color) {
+var boot_box = function (color) {
   var a = CUBOID([1.8, 0.05, 4.8]);
   var b = T([0, 1])([-0.05, 0.05])(CUBOID([0.05, 1.5, 4.8]));
   var c = T([0, 1, 2])([-0.05, 0.05, -0.05])(CUBOID([1.9, 1.7, 0.05]));
@@ -282,7 +185,7 @@ var box = boot_box(BROWN);
 var boxes = STRUCT([T([0, 1, 2])([38, 8.2, 40]), R([0,2])([PI/2]), box, T([2])([4.8]), box]);
 DRAW(boxes);
 
-var <a name='bed' class='anchor' href="#bed">barcelona_day_bed</a> = function(color){
+var barcelona_day_bed = function(color){
   //legs
   var legs37 = T([0, 1])([0.11, 0.11])(CYLINDER(0.11, 1.57)([12, 1]));
   var barcelona_day_bed_legs = STRUCT([legs37, T([0])([8.85+0.11])(legs37), T([1])([4.8-0.22]), legs37, T([0])([8.85+0.11])(legs37)]);
@@ -339,7 +242,7 @@ var <a name='bed' class='anchor' href="#bed">barcelona_day_bed</a> = function(co
 var bed = T([0,1,2])([45, 8.2, 70])(R([1, 2])([-PI/2])(barcelona_day_bed(BROWN)));
 DRAW(bed);
 
-var <a name='pouf' class='anchor' href="#pouf">barcelona_pouf</a> = function(color){
+var barcelona_pouf = function(color){
 
 //legs
 var points062 = [[5.46, 4.67], [4.87, 5.27], [4.49, 5.42], [4.1, 5.37]];
@@ -429,7 +332,7 @@ return STRUCT([barcelona_pouf_legs, barcelona_pouf_ropes, COLOR(color), barcelon
 var pouf = T([0,1,2])([53, 4.35, 56.5])(barcelona_pouf(BROWN));
 DRAW(pouf);
 
-var <a name='table' class='anchor' href="#table">barcelona_table</a> = function () {
+var barcelona_table = function () {
   var leg0 = CUBOID([0.2, 2, 0.1]);
   var leg1 = T([1])([2-0.2])(CUBOID([6, 0.2, 0.1]));
   var legs0 = STRUCT([R([0, 2])([-PI/4]), leg0, leg1, T([0])([6-0.2]), leg0]);
@@ -445,7 +348,7 @@ var <a name='table' class='anchor' href="#table">barcelona_table</a> = function 
 var table = T([0,1,2])([34, 8.2, 81])(barcelona_table());
 DRAW(table);
 
-var <a name='brc_chair' class='anchor' href="#brc_chair">barcelona_chair</a> = function(color){
+var barcelona_chair = function(color){
 
   //skeleton - legs
   var points000 = [[4.59, 3.84, 0], [4.79, 3.7, 0], [3.66, 3.21, 0], [3.05, 3.29, 0]];
@@ -651,18 +554,3 @@ DRAW(barcelona_chair0);
 
 var barcelona_chair1 =  T([0,1,2])([47, 5.1, 76])(R([0, 2])([-PI/2])(S([0,1,2])([1.25,1.25,1.25])(barcelona_chair(BROWN))));
 DRAW(barcelona_chair1);
-        </code>
-      </pre>
-      </section>
-    </div>
-
- <!-- FOOTER  -->
-    <div id='footer_wrap' class='outer'>
-      <footer class='inner'>
-        <p>Published with <a href='http://pages.github.com'>GitHub Pages</a> - Copyright® <a href="aboutme.html">Antonello Gatto</a></p>
-      </footer>
-    </div>
-    
-
-  </body>
-  </html>
