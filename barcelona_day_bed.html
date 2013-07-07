@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='chrome=1' />
+  <meta name='description' content="Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+  <link href="stylesheets/menu.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/iconic.css" media="screen" rel="stylesheet" type="text/css" />
+  
+  <link rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylesheet.css'>
+  <link rel="image_src" href="images/beds0.jpg" />
+
+  <script src="javascripts/prefix-free.js"></script>
+  <title>Farnsworth House Interior Elements - Barcelona Day Bed</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id='header_wrap' class='outer'>
+    <header class='inner'>
+      <a id='forkme_banner' href='https://github.com/antonellogatto'>View on GitHub</a>
+
+      <h1 id='project_title'>Farnsworth House Interior Elements</h1>
+      <h2 id='project_tagline'>Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto</h2>
+
+    </header>
+  </div>
+
+  <!-- NAVBAR -->
+  <div id="navbar">
+  <nav>
+    <ul class="menu">
+      <li><a href="house.html"><span class="iconic home"></span>  Farnsworth House</a>
+        <ul>
+          <li><a href='house_development.html'><span class="iconic "></span>  Development</a></li>
+          <li><a href="house_location.html"><span class="iconic map-pin"></span>  Location</a></li>
+        </ul>
+      </li>
+      <li><a href="office_set.html"><span class="iconic pencil"></span>  Office Set</a>
+        <ul>
+          <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
+          <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
+          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
+        </ul>
+      </li>
+      <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
+        <ul>
+          <li><a href="barcelona_chair.html"><span class="iconic"></span>  Barcelona Chair</a></li>
+          <li><a href="barcelona_pouf.html"><span class="iconic"></span>  Barcelona Pouf</a></li>
+          <li><a href="barcelona_day_bed.html"><span class="iconic"></span>  Barcelona Day Bed</a></li>
+          <li><a href="barcelona_table.html"><span class="iconic"></span>  Barcelona Table</a></li>
+        </ul>
+      </li>
+      <li><a href="model.html"><span class="iconic fullscreen"></span> Plasm.js 3D Model</a></li>
+      <li><a href="van_der_rohe.html"><span class="iconic document"></span>  Ludwig Mies van der Rohe</a></li>
+      <li><a href="aboutme.html"><span class="iconic user"></span>  About Me</a></li>
+    </ul>
+    <a href='zipball/final-project.zip' ><li class="zip_download_link"></li></a>
+    <a href='tarball/final-project.tar' ><li class="tar_download_link"></li></a>
+    <div class="clearfix"></div>
+  </nav>
+  </div>
+
+  <!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#descr">Description</a></li>
+      <li><a href="#legs">Legs</a></li>
+      <li><a href="#ropes">Ropes</a></li>
+      <li><a href="#mattress">Mattress</a></li>
+      <li><a href="#complete">Complete</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id='main_content_wrap' class='outer'>
+    <section id='main_content' class='inner'>
+      
+
+        <h3>Barcelona Day Bed</h3>
+
+        <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
+
+        <p>Designed in 1930, the Barcelona Couch shares the same simple elegance as the iconic lounge chair of the same name. Mies van der Rohe's command of line and material in all medium, from architecture to furniture, helped define the modern vocabulary.
+        </p>
+
+        <img src='images/bed0.jpg' />
+
+        <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
+
+        <p>Barcelona Day Bed legs are four <a href='model.html#cylinder'>CYLINDER</a>(0.11, 1.57)([12, 1]) properly translated. The base is obtained drawing the vertical points of the insider edges and the points of the curves of the external edges. Then through series of <a href="model.html#bs2">bs2()</a> are created the base surfaces.
+        </p>
+        <img src='images/bed_legs.jpg' />
+
+        <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
+
+        <p>In order to create the ropes, we can draw the points of the side surface of the first rope, of height 0.03, Bezier-map them through <a href="model.html#bs2">bs2()</a> and then EXTRUDE([0.5]). Then the rope is replicated 11 times and translated properly.
+        </p>
+        <img src='images/bed_ropes.jpg' />
+
+        <h4><a name='mattress' class='anchor' href="#mattress">Mattress</a></h4>
+
+        <p>The main mattress is a CUBOID([12.27, 5.25, 0.45]). The stuffed square on the top of the mattress are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function <a href="model.html#bs3">bs3()</a> that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions to fill the mattress surface. The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
+        </p>
+        <img src='images/bed_mattress.jpg' />
+
+        <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
+
+        <p>In the end has been added a cylindrical pillow. Everything is structed and mattress, pillow and buttons colored properly. The result of the function <a href="model.html#bed">barcelona_day_bed()</a> is a good Plasm.js 3D model of the Mies van der Rohe's Barcelona Day Bed.
+        </p>
+        <img src='images/beds0.jpg' />
+
+        <p><a href="model.html#bed">View code</a></p>
+       <p>Sources: <a href='http://www.knoll.com/product/barcelona-couch'>knoll.com</a></p>
+
+      </section>
+    </div>
+
+ <!-- FOOTER  -->
+    <div id='footer_wrap' class='outer'>
+      <footer class='inner'>
+        <p>Published with <a href='http://pages.github.com'>GitHub Pages</a> - Copyright® <a href="aboutme.html">Antonello Gatto</a></p>
+      </footer>
+    </div>
+    
+
+  </body>
+  </html>
