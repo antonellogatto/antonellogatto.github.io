@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='chrome=1' />
+  <meta name='description' content="Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto" />
+
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+  <link href="stylesheets/menu.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/iconic.css" media="screen" rel="stylesheet" type="text/css" />
+  
+  <link rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylesheet.css'>
+  <link rel="image_src" href="images/house1.jpg" />
+
+  <script src="javascripts/prefix-free.js"></script>
+  <title>Farnsworth House Interior Elements - Barcelona Chair</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id='header_wrap' class='outer'>
+    <header class='inner'>
+      <a id='forkme_banner' href='https://github.com/antonellogatto'>View on GitHub</a>
+
+      <h1 id='project_title'>Farnsworth House Interior Elements</h1>
+      <h2 id='project_tagline'>Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto</h2>
+
+    </header>
+  </div>
+
+  <!-- NAVBAR -->
+  <div id="navbar">
+  <nav>
+    <ul class="menu">
+      <li><a href="house.html"><span class="iconic home"></span>  Farnsworth House</a>
+        <ul>
+          <li><a href='house_development.html'><span class="iconic "></span>  Development</a></li>
+          <li><a href="house_location.html"><span class="iconic map-pin"></span>  Location</a></li>
+        </ul>
+      </li>
+      <li><a href="office_set.html"><span class="iconic pencil"></span>  Office Set</a>
+        <ul>
+          <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
+          <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
+          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
+        </ul>
+      </li>
+      <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
+        <ul>
+          <li><a href="barcelona_chair.html"><span class="iconic"></span>  Barcelona Chair</a></li>
+          <li><a href="barcelona_pouf.html"><span class="iconic"></span>  Barcelona Pouf</a></li>
+          <li><a href="barcelona_day_bed.html"><span class="iconic"></span>  Barcelona Day Bed</a></li>
+          <li><a href="barcelona_table.html"><span class="iconic"></span>  Barcelona Table</a></li>
+        </ul>
+      </li>
+      <li><a href="model.html"><span class="iconic fullscreen"></span> Plasm.js 3D Model</a></li>
+      <li><a href="van_der_rohe.html"><span class="iconic document"></span>  Ludwig Mies van der Rohe</a></li>
+      <li><a href="aboutme.html"><span class="iconic user"></span>  About Me</a></li>
+    </ul>
+    <a href='zipball/final-project.zip' ><li class="zip_download_link"></li></a>
+    <a href='tarball/final-project.tar' ><li class="tar_download_link"></li></a>
+    <div class="clearfix"></div>
+  </nav>
+  </div>
+
+  <!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#descr">Description</a></li>
+      <li><a href="#legs">Legs</a></li>
+      <li><a href="#ropes">Ropes</a></li>
+      <li><a href="#pillows">Pillows</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#complete">Complete</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id='main_content_wrap' class='outer'>
+    <section id='main_content' class='inner'>
+      
+
+        <h3>Barcelona Chair</h3>
+
+        <h4><a name='descr' class='anchor' href="#descr">Description</a></h4>
+        <p>As a rising figure of the modernist movement, Ludwig Mies van der Rohe was selected to design the Weimar Republic’s Pavilion for the Barcelona Industrial Exposition of 1929. Through masterful proportioning and planning, Mies created a rhythmic and entirely unprecedented space, which elevated industrial-age materials to a level of grace never before achieved. Inside, Mies included chairs and stools conceived as a resting place for the King and Queen of Spain. Determined to create a chair worthy of royalty, Mies is thought to have based the designs, with their signature crisscross frames, on the campaign chairs of Ancient Rome.</p>
+
+        <img src='images/brc4.jpg' />
+
+        <blockquote>“I feel that it must be possible to harmonize the old and new in our civilization.”</blockquote>
+        
+        <img src='images/brc3.jpg' />
+
+        <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
+
+        <p>The model can be created starting from the skeleton of the chair: the legs. Every edge of the chair is drawn by a sequence of points: 18 points are necessaries to draw all the edges of the chair. Then the function <a href="model.html#bs2">bs2()</a> Bezier-map all the combination between the edges to create the surfaces the define the skeleton. SIMPLICIAL_COMPLEX has been used to fill the empty between the legs curve surfaces.</p>
+        <img src='images/brc_chair_legs.jpg' />
+
+        <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
+
+        <p>Broken lines are necessary to build up the ropes where will be placed the bottom pillow. Four sequences of points can individuate the four sides edges of a singular rope; NUBS(S0)(1)(knots)(points) can be used to create a broken line from these points - grade = 1 because we need a broken line = grade 1. After the definition of the edges we can create the surfaces between them thanks to <a href="model.html#bs2">bs2()</a> or just Bezier-mapping on S1 two edges at time. Once one rope is generated, the function REPLICA(9) let us create the sequence of ropes properly translated. The same technique can be used for the 8 ropes on the back of the chair. All the ropes are then structed and colored of black.</p>
+        <img src='images/brc_chair_ropes.jpg' />
+
+        <h4><a name='pillows' class='anchor' href="#pillows">Pillows</a></h4>
+
+        <p>The rounded sides surfaces of the pillows has been created Bezier-mapping through <a href="model.html#bs3">bs3()</a> the two sequences of points that draw the upper and bottom edge of each side and the middle sequence of points that has been approximated by the function. Then, the upper and bottom surface have been created passing the points of two opposites edges as parameters through <a href="model.html#bs2">bs2()</a>. The stuffed square on the top of the pillows are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated, again through <a href="model.html#bs3">bs3()</a>. Then the stuffed square is replicated in the two dimensions to fill the pillow surface.
+        </p>
+        <img src='images/brc_chair_pillows.jpg' />
+
+        <h4><a name='details' class='anchor' href="#details">Details</a></h4>
+
+        <p>The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.</p>
+        <img src='images/brc_chair_details.jpg' />
+
+        <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
+
+        <p>Legs, ropes, pillows and buttons are structed the last two coloured with the array passed through the call to the function. The result of the function <a href="model.html#brc_chair">barcelona_chair()</a> is a perfect Plasm.js 3D model of the Mies van der Rohe's Barcelona Chair.
+        </p>
+        <img src='images/brc_chairs0.jpg' />
+        <img src='images/brc_chairs2.jpg' />
+
+        <p><a href="model.html#brc_chair">View code</a></p>
+       <p>Sources: <a href='http://www.knoll.com/product/barcelona-chair'>knoll.com</a></p>
+
+      </section>
+    </div>
+
+ <!-- FOOTER  -->
+    <div id='footer_wrap' class='outer'>
+      <footer class='inner'>
+        <p>Published with <a href='http://pages.github.com'>GitHub Pages</a> - Copyright® <a href="aboutme.html">Antonello Gatto</a></p>
+      </footer>
+    </div>
+    
+
+  </body>
+  </html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='chrome=1' />
+  <meta name='description' content="Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+  <link href="stylesheets/menu.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/iconic.css" media="screen" rel="stylesheet" type="text/css" />
+  
+  <link rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylesheet.css'>
+  <link rel="image_src" href="images/poufs0.jpg" />
+
+  <script src="javascripts/prefix-free.js"></script>
+  <title>Farnsworth House Interior Elements - Barcelona Pouf</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id='header_wrap' class='outer'>
+    <header class='inner'>
+      <a id='forkme_banner' href='https://github.com/antonellogatto'>View on GitHub</a>
+
+      <h1 id='project_title'>Farnsworth House Interior Elements</h1>
+      <h2 id='project_tagline'>Plasm.js 3D model of interior elements from Ludwig van der Rohe's Farnsworth House by Antonello Gatto</h2>
+
+    </header>
+  </div>
+
+  <!-- NAVBAR -->
+  <div id="navbar">
+  <nav>
+    <ul class="menu">
+      <li><a href="house.html"><span class="iconic home"></span>  Farnsworth House</a>
+        <ul>
+          <li><a href='house_development.html'><span class="iconic "></span>  Development</a></li>
+          <li><a href="house_location.html"><span class="iconic map-pin"></span>  Location</a></li>
+        </ul>
+      </li>
+      <li><a href="office_set.html"><span class="iconic pencil"></span>  Office Set</a>
+        <ul>
+          <li><a href='brno_chair.html'><span class="iconic"></span>  Brno Chair</a></li>
+          <li><a href="farnsworth_desk.html"><span class="iconic"></span>  Farnsworth Desk</a></li>
+          <li><a href="boot_box.html"><span class="iconic"></span>  Boot Box</a></li>
+        </ul>
+      </li>
+      <li><a href="barcelona_set.html"><span class="iconic book"></span>  Barcelona Set</a>
+        <ul>
+          <li><a href="barcelona_chair.html"><span class="iconic"></span>  Barcelona Chair</a></li>
+          <li><a href="barcelona_pouf.html"><span class="iconic"></span>  Barcelona Pouf</a></li>
+          <li><a href="barcelona_day_bed.html"><span class="iconic"></span>  Barcelona Day Bed</a></li>
+          <li><a href="barcelona_table.html"><span class="iconic"></span>  Barcelona Table</a></li>
+        </ul>
+      </li>
+      <li><a href="model.html"><span class="iconic fullscreen"></span> Plasm.js 3D Model</a></li>
+      <li><a href="van_der_rohe.html"><span class="iconic document"></span>  Ludwig Mies van der Rohe</a></li>
+      <li><a href="aboutme.html"><span class="iconic user"></span>  About Me</a></li>
+    </ul>
+    <a href='zipball/final-project.zip' ><li class="zip_download_link"></li></a>
+    <a href='tarball/final-project.tar' ><li class="tar_download_link"></li></a>
+    <div class="clearfix"></div>
+  </nav>
+  </div>
+
+  <!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#legs">Legs</a></li>
+      <li><a href="#ropes">Ropes</a></li>
+      <li><a href="#pillow">Pillow</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#complete">Complete</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id='main_content_wrap' class='outer'>
+    <section id='main_content' class='inner'>
+      
+        <h3>Barcelona Pouf</h3>
+
+        <img src='images/pouf0.jpg' />
+
+        <h4><a name='legs' class='anchor' href="#legs">Legs</a></h4>
+
+        <p>The legs are built drawing the curves with sequences of points. Then they are mapped through <a href="model.html#bs2">bs2()</a> function and extruded by ([0.16]). The trasversal bars are extruded by ([2.78]), the distance between the sides legs.
+        </p>
+        <img src='images/pouf_legs.jpg' />
+
+        <h4><a name='ropes' class='anchor' href="#ropes">Ropes</a></h4>
+
+        <p>To create the ropes that support the pillow we don't need a curve but a broken line is enough. So, after creating the sequences of points, these can be mapped through NUBS(S0)(1)(knots)(points070) - the grade is 1 because we need just a broken line. With the 2 edges created by the points we can obtain the side surface mapping them by Bezier and then extruding them of ([0.22]). The rest of the ropes are generated thanks to REPLICA(7)([rope, T([2])([0.22+0.20])]) function.
+        </p>
+        <img src='images/pouf_ropes.jpg' />
+
+        <h4><a name='pillow' class='anchor' href="#pillow">Pillow</a></h4>
+
+        <p>The base pillow is generated thanks to a second-grade NUBS line. It is Bezier-mapped before with an inside point, creating the first surface; then a 0.3-higher replica of the curve is created, and Bezier-mapped with the first one to create the side surface; the first operation is applied to the second NUBS line to create the upper surface.
+        The stuffed square on the top of the pillow are created Bezier-mapping three sequences of points: two for the edges and the middle one that will be approximated. This is made by the special function <a href="model.html#bs3">bs3()</a> that create the surface by three sequences of points. Then the stuffed square is replicated in the two dimensions to fill the pillow surface.
+        </p>
+        <img src='images/pouf_pillow.jpg' />
+
+        <h4><a name='details' class='anchor' href="#details">Details</a></h4>
+
+        <p>The pillow buttons are simplest <a href="model.html#cylinder">CYLINDER</a>(0.04, 0.01)([12, 1]), replicated and translated properly between the stuffed squares.
+        </p>
+        <img src='images/pouf_details.jpg' />
+
+        <h4><a name='complete' class='anchor' href="#complete">Complete model</a></h4>
+
+        <p>Legs, ropes, pillow and buttons are structed and the last two coloured with the array passed through the call to the function. The result of the function <a href="model.html#pouf">barcelona_pouf()</a> is a perfect Plasm.js 3D model of the Mies van der Rohe's Barcelona Pouf.
+        </p>
+        <img src='images/poufs0.jpg' />
+
+        <p><a href="model.html#pouf">View code</a></p>
+       <p>Sources: <a href=''></a></p>
+
+      </section>
+    </div>
+
+ <!-- FOOTER  -->
+    <div id='footer_wrap' class='outer'>
+      <footer class='inner'>
+        <p>Published with <a href='http://pages.github.com'>GitHub Pages</a> - Copyright® <a href="aboutme.html">Antonello Gatto</a></p>
+      </footer>
+    </div>
+    
+
+  </body>
+  </html>
