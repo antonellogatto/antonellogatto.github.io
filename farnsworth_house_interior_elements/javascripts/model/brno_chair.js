@@ -36,7 +36,7 @@ var brno_chair = function(color){
 
 }
 
-//creazione e posizionamento
+//creation and positioning
 
 var brno_chair0 = T([0, 1, 2])([42, 5.62, 48])(R([0,2])([PI/2])(brno_chair(BROWN)));
 

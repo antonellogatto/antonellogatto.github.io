@@ -67,6 +67,22 @@
   </nav>
   </div>
 
+  <!-- MAIN CONTENT -->
+  <div id='main_content_wrap' class='outer'>
+    <section id='main_content' class='inner'>
+
+    <img src='images/livings.jpg' />
+
+    <div id="div_plasm"></div>
+
+    <button id="showbtn" onclick="view()"> <span>Show model on Plasm.js</span> </button>
+
+
+
+    <h3>Source:<a onclick="showjs()" href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;Javascript</a>
+      <a onclick="showpy()" href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;Python</a></h3>
+
+<div id="js_source" style="display:block">
 <!--SIDE MENU-->
   <div id='side_menu'>
     <ul>
@@ -84,18 +100,6 @@
       <li><a href="#brc_chair">barcelona_chair()</a></li>
     </ul>
   </div>
-
-  <!-- MAIN CONTENT -->
-  <div id='main_content_wrap' class='outer'>
-    <section id='main_content' class='inner'>
-
-    <img src='images/livings.jpg' />
-
-    <div id="div_plasm"></div>
-
-    <button id="showbtn" onclick="view()"> <span>Show model on Plasm.js</span> </button>
-
-    <h3>Source:</h3>
 
       <pre><code>
 //improve domains intervals for a better quality
@@ -656,6 +660,219 @@ var barcelona_chair1 =  T([0,1,2])([47, 5.1, 76])(R([0, 2])([-PI/2])(S([0,1,2])(
 DRAW(barcelona_chair1);
         </code>
       </pre>
+    </div>
+
+
+<div id="py_source" style="display:none" name="py_source">
+<!--SIDE MENU-->
+  <div id='side_menu' style="font-size:12px">
+    <ul>
+      <li><a href="#support_py">Support</a></li>
+      <li><a href="#bs2_py">BS2()</a></li>
+      <li><a href="#bs3_py">BS3()</a></li>
+      <li><a href="#house_py">FARNSWORTH_HOUSE()</a></li>
+      <li><a href="#desk_py">FARNSWORTH_DESK()</a></li>
+      <li><a href="#brno_py">BRNO_CHAIR()</a></li>
+      <li><a href="#box_py">BOOT_BOX()</a></li>
+      <li><a href="#bed_py">BARCELONA_DAY_BED()</a></li>
+      <li><a href="#pouf_py">BARCELONA_POUF()</a></li>
+      <li><a href="#table_py">BARCELONA_TABLE()</a></li>
+      <li><a href="#brc_chair_py">BARCELONA_CHAIR()</a></li>
+    </ul>
+  </div>
+
+      <pre><code><a name='support_py' class='anchor' href="#support_py"></a>
+from pyplasm import *
+
+#improve domains intervals for a better quality
+
+domain1D = INTERVALS(1)(8);
+domain2D = PROD([INTERVALS(1)(8),INTERVALS(1)(8)]);
+detailed_domain2D = PROD([INTERVALS(1)(32),INTERVALS(1)(32)]);
+
+#2-curves bezier surface
+
+def <a name='bs2_py' class='anchor' href="#bs2_py">BS2</a>(l):
+  p1 = l[0];
+  p2 = l[1];
+  c1 = BEZIER(S1)(p1);
+  c2 = BEZIER(S1)(p2);
+  return MAP(BEZIER(S2)([c1, c2]))(domain2D);
+
+
+#3-curves bezier surface
+
+def <a name='bs3_py' class='anchor' href="#bs3_py">BS3</a>(l):
+  p1 = l[0];
+  p2 = l[1];
+  p3 = l[2];
+  c1 = BEZIER(S1)(p1);
+  c2 = BEZIER(S1)(p2);
+  c3 = BEZIER(S1)(p3);
+  return MAP(BEZIER(S2)([c1,c2,c3]))(domain2D);
+
+BROWN = [202/255, 141/255, 72/255];
+
+from pyplasm import *
+
+def <a name='house_py' class='anchor' href="#house_py">FARNSWORTH_HOUSE()</a>: 
+
+  #terrain
+
+  terrain = COLOR([10/255, 100/255, 0])(T([2, 3])([-0.1, -5])(CUBOID([50, 0.1, 70])));
+
+  #pillars
+
+  pil00 = CUBOID([0.5, 1.6, 0.5]);
+  pillars0 = STRUCT([T([3])([-6.5]), pil00, T([3])([6.5]), pil00, T([3])([13.5]), pil00]);
+  pil01 = CUBOID([0.5, 10, 0.5]);
+  pillars1 = STRUCT([T([3])([-6.5]), pil00, T([3])([6.5]), pil01, T([3])([13.5]), pil01, T([3])([13.5]), pil01, T([3])([13.5]), pil01]);
+  pillars2 = STRUCT([pil01, T([3])([13.5]), pil01, T([3])([13.5]), pil01, T([3])([13.5]), pil01]);
+  pillars = STRUCT([T([1, 3])([4+0.5, 7.5]), pillars0, T([1])([10+0.5]), pillars1, T([1])([25+0.5]), pillars2]);
+
+  #floors
+
+  fl0z = 25;
+  fl0x = 10;
+  fl1z = 50;
+  fl1x = 25;
+  floor0 = CUBOID([fl0x, 1, fl0z]);
+  floor1 = CUBOID([fl1x, 1, fl1z]);
+  floor2 = CUBOID([fl1x+1, 0.5, fl1z+1]);
+  floors = STRUCT([T([1, 2])([5, 0.7]), floor0, T([1, 2, 3])([fl0x+0.5, 0.7+1+0.7, 5]), floor1, T([2])([6.9-1]), floor1, T([1, 2, 3])([-0.5, 1, -0.5]), floor2]);
+
+  #stairs
+
+  step = CUBOID([0.8, 0.15, 7.5]);
+  steps0 = STRUCT([T([1, 2, 3])([1.8, 0.05, 10]), step, T([1, 2])([0.8, 0.35]), step, T([1, 2])([0.8, 0.35]), step, T([1, 2])([0.8, 0.35]), step]);
+  c000 = CUBOID([0.2, 2.5, 6.5]);
+  stair0 = STRUCT([steps0, T([1, 2, 3])([2.6, 0.05, 10+0.5]), R([1, 2])(-PI/2.75), c000]);
+  
+  steps1 = STRUCT([T([1, 2, 3])([11.1, 1.95, 10]), step, T([1, 2])([0.8, 0.5]), step, T([1, 2])([0.8, 0.5]), step, T([1, 2])([0.8, 0.5]), step, T([1, 2])([0.8, 0.5]), step, T([1])([0.4]), step]);
+  c001 = CUBOID([0.2, 3.65, 6.5]);
+  c002 = CUBOID([0.2, 0.5, 6.5]);
+  stair1 = STRUCT([steps1, T([1, 2, 3])([11.1+0.8, 1.95, 10+0.5]), R([1, 2])(-PI/3.15), c001, T([2])([3.7]), R([1, 2])(PI/3.15-PI/2), c002]);
+  stairs = STRUCT([stair0, stair1]);
+
+  #windows
+
+  wind0 = CUBOID([0.1, 4.9, 10]);
+  wind1 = CUBOID([0.1, 4.9, 13]);
+  wind2 = CUBOID([9.5, 4.9, 0.1]);
+  wind3 = CUBOID([5, 4.9, 0.1]);
+  windows0 = STRUCT([T([1, 2, 3])([10+0.5+5, 0.7+1+0.7+0.7+1, 5+13.25]), wind0, T([3])([10+0.25]), wind1, T([3])([13+0.25]), wind1]);
+  windows1 = STRUCT([T([1, 2, 3])([10+0.5+5+0.25, 0.7+1+0.7+0.7+1, 5+13]), wind2, T([1])([9.5+0.25]), wind3, T([1])([5+0.25]), wind2]);
+  windows = STRUCT([COLOR([200/255, 200/255, 200/255, 0.5]), windows0, windows1, T([3])([23.5+0.5+13-0.1])(windows1), T([1])([25-0.1]), windows0]);
+
+  #fixtures
+
+  fix0 = CUBOID([0.25, 4.9, 0.25]);
+  fixtures0 = STRUCT([T([1, 2, 3])([10+0.5+5, 0.7+1+0.7+0.7+1, 5+13]), fix0, T([3])([10.25]), fix0, T([3])([13.25]), fix0, T([3])([13.25]), fix0]);
+  fixtures1 = STRUCT([T([1, 2, 3])([10+10+5+0.25, 0.7+1+0.7+0.7+1, 5+13]), fix0, T([1])([5+0.25]), fix0]);
+  fixtures = STRUCT([fixtures0, fixtures1, T([3])([23.5+0.5+13-0.25])(fixtures1), T([1])([25-0.25]), fixtures0]);
+  
+  return STRUCT([terrain, windows, COLOR([255/255,255/255,255/255]), floors, stairs, pillars, fixtures]);
+
+house = S([1, 2, 3])([2, 2, 2])(FARNSWORTH_HOUSE());
+
+VIEW(house);
+
+def <a name='desk_py' class='anchor' href="#desk_py">FARNSWORTH_DESK</a>(color):
+
+  leg0 = CYLINDER([0.1, 3])(12);
+  legs = STRUCT([T([1, 2])([0.2, 0.7]), leg0, T([1])([4-0.4])(leg0), T([2])([7-1.4]), leg0, T([1])([4-0.4])(leg0)]);
+
+  plane0 = CUBOID([4, 7, 0.35]);
+  plane1 = CUBOID([3.7, 2, 0.15]);
+  planes = STRUCT([plane0, T([1, 2, 3])([0.15, -1.5, -0.15]), plane1, T([2])([7-0.5+1.5]), plane1]);
+
+  c0 = CUBOID([0.01, 0.01, 0.7]);
+  c1 = CUBOID([0.01, 1, 0.01]);
+  c = STRUCT([c0, T([3])([0.7-0.01])(c1), T([2])([1-0.01])(c0)]);
+  cs = STRUCT([T([1, 2, 3])([0.5, 7+0.25, 3]), c, T([1])([0.8]), c, T([1])([0.8]), c, T([1])([0.8]), c, T([1])([0.8]), c]);
+
+  b0 = CUBOID([2, 4, 0.03]);
+  b1 = CUBOID([1.98, 0.2, 0.03]);
+  bs = STRUCT([COLOR([35/255, 35/255, 35/255]), T([1, 2, 3])([0.2, 1.5, 3+0.35]), b0, T([1, 2, 3])([0.02, 0.01, 0.03]), b1, T([2])([4-0.02-0.02-0.2]), b1]);
+
+  return STRUCT([bs, cs, T([2])([-7.25-1.25])(cs), legs, T([3])([3]), COLOR(color), planes]);
+
+#creation and positioning
+
+desk = T([1, 2, 3])([39.5, 8.2, 45])(R([1, 3])(-PI/2)(R([2, 3])(-PI/2)(FARNSWORTH_DESK(BROWN))));
+
+#VIEW(desk);
+
+
+def <a name='brno_py' class='anchor' href="#brno_py">BRNO_CHAIR</a>(color):
+
+  points100 = [[2.98, 3], [2.63, 5.23], [2.62, 5.53], [4.76, 5.26]];
+  points101 = [[2.91, 3], [2.55, 5.35], [2.55, 5.59], [4.78, 5.32]];
+  leg_surf00 = BS2([points100, points101]);
+
+  leg000 = PROD([leg_surf00, Q(0.16)]);
+
+  points102 = [[2.91, 3], [3, 2.48], [3.11, 2.59], [4.8, 2.59]];
+  points103 = [[2.98, 3], [3.03, 2.48], [3.29, 2.68], [4.8, 2.64]];
+  leg_surf01 = BS2([points102, points103]);
+
+  leg001 = PROD([leg_surf01, Q(0.16)]);
+
+  points104 = [[4.4, 2.64], [4.4-0.16, 2.64]];
+  points105 = [[4.4, 2.59], [4.4-0.16, 2.59]];
+  leg_surf02 = BS2([points104, points105]);
+
+  leg002 = PROD([leg_surf02, Q(2.05)]);
+
+  brno_legs = STRUCT([leg000, leg001, T([3])([0.16]), leg002, T([3])([2.05]), leg000, leg001]);
+
+  points106 = [[4.49, 4.44], [4.55, 5.77], [4.63, 6], [4.85, 5.89]];
+  points107 = [[4.65, 4.23], [4.85, 5.89]];
+  pill100 = PROD([BS2([points106, points107]), Q(2.05)]);
+
+  points108 = [[2.69, 4.24], [2.32, 4.56], [3.73, 4.41], [4.48, 4.45]];
+  points109 = [[4.65, 4.23], [4.49, 4.44]];
+  pill101 = PROD([BS2([points108, points109]), Q(2.05)]);
+
+  brno_pillows = STRUCT([COLOR(color), T([3])([0.16]), pill100, pill101]);
+
+  return STRUCT([brno_pillows, brno_legs]);
+
+#creation and positioning
+
+brno_chair0 = T([1, 2, 3])([42, 5.62, 48])(R([1, 3])(PI/2)(BRNO_CHAIR(BROWN)));
+
+brno_chair1 = T([1, 2, 3])([46, 5.62, 50])(R([1, 3])(-PI/2)(BRNO_CHAIR(BROWN)));
+brno_chair2 = T([1, 2, 3])([42, 5.62, 50])(R([1, 3])(-PI/2)(BRNO_CHAIR(BROWN)));
+
+chairs = STRUCT([brno_chair1, brno_chair2, brno_chair0]);
+
+#VIEW(chairs);
+
+def <a name='box_py' class='anchor' href="#box_py">BOOT_BOX</a>(color):
+  a = CUBOID([1.8, 0.05, 4.8]);
+  b = T([1, 2])([-0.05, 0.05])(CUBOID([0.05, 1.5, 4.8]));
+  c = T([1, 2, 3])([-0.05, 0.05, -0.05])(CUBOID([1.9, 1.7, 0.05]));
+  d = T([1, 2])([1.8, 0.05])(CUBOID([0.05, 1.7, 4.8]));
+  e = T([1, 2])([-0.05, 0.05+1.5])(CUBOID([0.05, 0.2, 2.1]));
+  f = T([1, 2])([-0.05, 0.05+1.7+0.01])(CUBOID([0.05, 0.3, 4.8]));
+  g = T([1, 2, 3])([-0.05, 0.05+1.7+0.01, -0.05])(CUBOID([1.9, 0.3, 0.05]));
+  return STRUCT([COLOR(color), a, b, c, T([3])([4.8+0.05])(c), d, e, 
+    T([3])([2.1+0.6])(e), f, T([1])([1.8+0.05])(f), g, T([3])([4.8+0.05])(g), T([2])([1.7+0.01+0.3])(a), 
+    T([2, 3])([0.02, 0.05])(c), T([2, 3])([0.02, 4.8])(c), T([1, 2])([-0.05, 0.02])(d), T([1, 2])([-1.8+0.05, 0.02])(d)]);
+
+
+#creation and positioning
+
+box = BOOT_BOX(BROWN);
+boxes = STRUCT([T([1, 2, 3])([38, 8.2, 40]), R([1, 3])(PI/2), box, T([3])([4.8]), box]);
+#VIEW(boxes);
+
+office_set = STRUCT([desk, chairs, boxes]);
+#VIEW(office_set);
+
+      </pre></code></div>
+
       </section>
     </div>
 
@@ -673,6 +890,29 @@ DRAW(barcelona_chair1);
         <script src="node_modules/f.js/lib/f.js"></script> 
         <script src="lib/plasm.js"></script>
         <script src="lib/plasm-fun.js"></script>
+
+            <script type="text/javascript">
+    var js_div = document.getElementById("js_source");
+    var py_div = document.getElementById("py_source");
+
+    var hidejs = function(){
+      js_div.style.display = 'none';
+    }
+
+    var showpy = function(){
+      hidejs();
+      py_div.style.display = 'block';
+    }
+
+    var showjs = function(){
+      hidepy();
+      js_div.style.display = 'block';
+    }
+
+    var hidepy = function(){
+      py_div.style.display = 'none';
+    }
+    </script>
 
  <!-- FOOTER  -->
     <div id='footer_wrap' class='outer'>

@@ -13,7 +13,7 @@ var boot_box = function (color) {
 		T([1, 2])([0.02, 0.05])(c), T([1, 2])([0.02, 4.8])(c), T([0, 1])([-0.05, 0.02])(d), T([0, 1])([-1.8+0.05, 0.02])(d)]);
 }
 
-//creazione e posizionamento
+//creation and positioning
 
 var box = boot_box(BROWN);
 var boxes = STRUCT([T([0, 1, 2])([38, 8.2, 40]), R([0,2])([PI/2]), box, T([2])([4.8]), box]);
