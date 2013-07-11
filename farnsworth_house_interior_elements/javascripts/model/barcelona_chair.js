@@ -200,7 +200,7 @@ var barcelona_chair = function(color){
 
 }
 
-//creazione e posizionamento
+//creation and positioning
 
 var barcelona_chair0 =  T([0,1,2])([43, 5.1, 77.5])(R([0, 2])([PI])(S([0,1,2])([1.25,1.25,1.25])(barcelona_chair(BROWN))));
 DRAW(barcelona_chair0);

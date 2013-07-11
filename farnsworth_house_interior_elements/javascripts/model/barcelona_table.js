@@ -1,4 +1,6 @@
 
+//test it
+
 var barcelona_table = function () {
 	var leg0 = CUBOID([0.2, 2, 0.1]);
 	var leg1 = T([1])([2-0.2])(CUBOID([6, 0.2, 0.1]));
@@ -10,7 +12,7 @@ var barcelona_table = function () {
 	return STRUCT([legs, T([1])([2]), plane]);
 }
 
-//creazione e posizionamento
+//creation and positioning
 
 var table = T([0,1,2])([34, 8.2, 81])(barcelona_table());
 DRAW(table);
