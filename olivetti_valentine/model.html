@@ -1,0 +1,424 @@
+b<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='chrome=1' />
+  <meta name='description' content="Plasm.js 3D model of old and reimagined Olivetti Valentine by Antonello Gatto" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
+  <link href="stylesheets/menu.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/iconic.css" media="screen" rel="stylesheet" type="text/css" />
+  
+  <link rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylesheet.css'>
+  <link href="stylesheets/model.css" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="image_src" href="" />
+
+  <script src="javascripts/prefix-free.js"></script>
+  <title>Olivetti Valentine Concept</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id='header_wrap' class='outer'>
+    <header class='inner'>
+      <a id='forkme_banner' href='https://github.com/antonellogatto'>View on GitHub</a>
+
+      <h1 id='project_title'>Olivetti Valentine Concept</h1>
+      <h2 id='project_tagline'>Plasm.js 3D model of old and reimagined Olivetti Valentine by Antonello Gatto</h2>
+
+    </header>
+  </div>
+
+  <!-- NAVBAR -->
+  <div id="navbar">
+  <nav>
+    <ul class="menu">
+      <li><a href="concept.html"><span class="iconic home"></span>  The Concept</a>
+        <ul>
+          <li><a href='designers.html'><span class="iconic "></span>  Designers</a></li>
+          <li><a href="university.html"><span class="iconic map-pin"></span>  University</a></li>
+        </ul>
+      </li>
+      <li><a href="old_valentine.html"><span class="iconic pencil"></span>  Old Valentine</a>
+        <ul>
+          <li><a href='old_keyboard.html'><span class="iconic"></span>  Keyboard</a></li>
+          <li><a href="old_surfaces.html"><span class="iconic"></span>  Surfaces</a></li>
+          <li><a href="old_interiors.html"><span class="iconic"></span>  Interiors</a></li>
+          <li><a href="old_box.html"><span class="iconic"></span>  Box</a></li>
+        </ul>
+      </li>
+      <li><a href="new_valentine.html"><span class="iconic book"></span>  New Valentine</a>
+        <ul>
+          <li><a href="new_keyboard.html"><span class="iconic"></span>  Keyboard</a></li>
+          <li><a href="new_surfaces.html"><span class="iconic"></span>  Surfaces</a></li>
+          <li><a href="new_monitor.html"><span class="iconic"></span>  Monitor</a></li>
+          <li><a href="new_box.html"><span class="iconic"></span>  Box</a></li>
+        </ul>
+      </li>
+      <li><a href="model.html"><span class="iconic fullscreen"></span> Plasm.js 3D Model</a></li>
+      <li><a href="sottsass.html"><span class="iconic document"></span>  Ettore Sottsass</a></li>
+      <li><a href="../aboutme.html"><span class="iconic user"></span>  About Me</a></li>
+    </ul>
+    <a href='zipball/final.zip' ><li class="zip_download_link"></li></a>
+    <a href='tarball/final.tar' ><li class="tar_download_link"></li></a>
+    <div class="clearfix"></div>
+  </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id='main_content_wrap' class='outer'>
+    <section id='main_content' class='inner'>
+
+    <img src='' />
+
+    <div id="div_plasm"></div>
+
+    <button id="showbtn" onclick="view()"> <span>Show model on Plasm.js</span> </button>
+
+    <h3>Source:&nbsp;&nbsp;&nbsp;&nbsp;
+      <a id="showjs" onclick="showjs()" href="javascript:void(0);">Javascript</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a id="showpy" onclick="showpy()" href="javascript:void(0);">Python</a></h3>
+
+<div id="js_source" style="display:block">
+
+<!--SIDE MENU-->
+  <div id='side_menu'>
+    <ul>
+      <li><a href="#support">Support</a></li>
+      <li><a href="#cylinder">CYLINDER()</a></li>
+      <li><a href="#bs2">bs2()</a></li>
+      <li><a href="#circum">Circum()</a></li>
+      <li><a href="#new_valentine">new_valentine()</a></li>
+
+    </ul>
+  </div>
+
+      <pre><code>
+
+<a name='support' class='anchor' href="#support"></a>
+//improve domains intervals for a better quality
+
+var domain1D = DOMAIN([[0, 1]])([8]);
+var domain2D = DOMAIN([[0, 1],[0, 1]])([16, 16]);
+var detailed_domain2D = DOMAIN([[0, 1], [0, 1]])([32, 32]);
+var domcir0 = PROD1x1([INTERVALS(2*PI)(30), INTERVALS(1)(12)]);
+
+var <a name='cylinder' class='anchor' href="#cylinder">CYLINDER</a> = function(r,h){
+  function C0(l){
+  var s = CYL_SURFACE([r,h])(l);
+  var b1 = DISK(r)(l);
+  var b2 = T([2])([h])(b1);
+  return STRUCT([s,b1,b2]);
+  }
+  return C0;
+}
+
+//2-curves bezier surface
+
+var <a name='bs2' class='anchor' href="#bs2">bs2</a> = function(l){
+  var p1 = l[0];
+  var p2 = l[1];
+  var c1 = BEZIER(S0)(p1);
+  var c2 = BEZIER(S0)(p2);
+  //DRAW(STRUCT([MAP(c1)(domain1D),MAP(c2)(domain1D),MAP(c3)(domain1D)]));
+  return MAP(BEZIER(S1)([c1, c2]))(domain2D);
+}
+
+var <a name='circum' class='anchor' href="#circum">Circum</a> = function(h, r){
+  var Circum0 = function(v){
+    return [r*COS(v[0]), r*SIN(v[0]), h];
+  }
+  return Circum0;
+}
+
+var <a name='new_valentine' class='anchor' href="#new_valentine">new_valentine</a> = function(){
+
+  var RED = [1,0,0];
+  var BLACK = [20/255, 20/255, 20/255];
+  var DARKGRAY = [50/255, 50/255, 50/255];
+  var YELLOW = [219/255, 169/255, 1/255];
+  var LIGHTGREEN = [125/200, 220/255, 0/255];
+  var LIGHTRED = [255/200, 43/255, 43/255];
+
+  //keyboard
+  var points000 = [[0.5, 3.5, 0], [0.5, 2.5, 0], [0.3, 2.7, 0], [2.3, 2.7, 0]];
+  var points001 = [[0.7, 3.5, 0], [0.8, 3.5, 0], [0.7, 3.19, 0], [1.5, 3.2, 0]];
+  var surf000 = bs2([points000, points001]);
+  var surf001 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)(points000))([0, 0.25, 0.25]))(domain2D);
+  var surf002 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)(points001))([0, 0.25, 0.25]))(domain2D);
+  var surf003 = bs2([[[0.5, 3.5, 0], [0.7, 3.5, 0]], [[0.5, 3.5+0.25, 0.25], [0.7, 3.5+0.25, 0.25]]]);
+  var points002 = [[0.5, 3.5+0.25, 0.25], [0.5, 2.5+0.25, 0.25], [0.3, 2.7+0.25, 0.25], [2.3, 2.7+0.25, 0.25]];
+  var points003 = [[0.7, 3.5+0.25, 0.25], [0.8, 3.5+0.25, 0.25], [0.7, 3.19+0.25, 0.25], [1.5, 3.2+0.25, 0.25]];
+  var surf004 = bs2([points002, points003]);
+  var surf005 = bs2([[[1.5, 3.2, 0], [15.5, 3.2, 0]], [[2.3, 2.7, 0], [14.7, 2.7, 0]]]);
+  var surf006 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)([[1.5, 3.2, 0], [15.5, 3.2, 0]]))([0, 0.25, 0.25]))(domain2D);
+  var surf007 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)([[2.3, 2.7, 0], [14.7, 2.7, 0]]))([0, 0.25, 0.25]))(domain2D);
+  var surf008 = bs2([[[1.5, 3.2+0.25, 0.25], [15.5, 3.2+0.25, 0.25]], [[2.3, 2.7+0.25, 0.25], [14.7, 2.7+0.25, 0.25]]]);
+  var points004 = [[14.7, 2.7, 0], [16.7, 2.7, 0], [16.5, 2.5, 0], [16.5, 3.5, 0]];
+  var points005 = [[15.5, 3.2, 0], [16.3, 3.19, 0], [16.2, 3.5, 0], [16.3, 3.5, 0]];
+  var surf009 = bs2([points004, points005]);
+  var surf010 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)(points004))([0, 0.25, 0.25]))(domain2D);
+  var surf011 = MAP(CYLINDRICAL_SURFACE(BEZIER(S0)(points005))([0, 0.25, 0.25]))(domain2D);
+  var surf012 = bs2([[[16.5, 3.5, 0], [16.5, 3.5+0.25, 0.25]], [[16.3, 3.5, 0], [16.3, 3.5+0.25, 0.25]]]);
+  var points006 = [[14.7, 2.7+0.25, 0.25], [16.7, 2.7+0.25, 0.25], [16.5, 2.5+0.25, 0.25], [16.5, 3.5+0.25, 0.25]];
+  var points007 = [[15.5, 3.2+0.25, 0.25], [16.3, 3.19+0.25, 0.25], [16.2, 3.5+0.25, 0.25], [16.3, 3.5+0.25, 0.25]];
+  var surf013 = bs2([points006, points007]);
+  var keyboard00 = STRUCT([COLOR(RED), surf000, surf001, surf002, surf003, surf004, surf005, surf006, surf007, surf008,
+    surf009, surf010, surf011, surf012, surf013]);
+  var keyboard01 = COLOR(BLACK)(CUBOID([15.4, 7, 0.17]));
+  var keysGen = function(color){
+    var row0 = STRUCT([CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([5.2, 0.7, 0.01]),
+      T([0])([5.2+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01])]);
+    var row1 = STRUCT([CUBOID([1+1, 0.7, 0.01]), T([0])([1+1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), 
+      T([0])([1+0.1]), CUBOID([2, 0.7, 0.01])]);
+    var row2 = STRUCT([CUBOID([1+0.45, 0.7, 0.01]), T([0])([1+0.45+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), 
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1.45, 0.7, 0.01]), T([0])([0.65]), CUBOID([0.8, 0.7+0.1+0.7, 0.01])]);
+    var row3 = STRUCT([CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]),
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), T([0])([1+0.1]), CUBOID([1, 0.7, 0.01]), 
+      T([0])([1+0.1]), CUBOID([1, 0.7, 0.01])]);
+    var row4 = STRUCT(REPLICA(14)([CUBOID([0.985, 0.7, 0.01]), T([0])([0.985+0.1])]));
+    var row5 = STRUCT(REPLICA(14)([CUBOID([0.985, 0.4, 0.01]), T([0])([0.985+0.1])]));
+    return STRUCT([COLOR(color), T([0, 1, 2])([0.15, 0.25+0.15, 0.17+0.1]), row0, T([1])([0.1+0.7]), row1, T([1])([0.1+0.7]), row2,
+      T([1])([0.1+0.7]), row3, T([1])([0.1+0.7]), row4, T([1])([0.1+0.7]), row5]);
+  }
+  var keys = keysGen(DARKGRAY);
+  var keyboard = STRUCT([T([0, 1, 2])([0.05, -2.5, 0.2]), keyboard00, T([0, 1, 2])([0.8, 3.2, 0.01]), keyboard01, keys]);
+  //DRAW(keyboard);
+
+  //mouse pad
+  var semisphere0 = Circum(0, 0.15);
+  var semisphere1 = Circum(0.1, 0.15);
+  var p00 = [0, 0, 0.1];
+  var semisphere = COLOR(YELLOW)(MAP(BEZIER(S1)([semisphere0, semisphere1, p00]))(domcir0));
+  var pad0 = T([1])([-0.2])(COLOR(BLACK)(CUBOID([1.5, 0.4, 0.01])));
+  var mouse_pad = STRUCT([T([0, 1, 2])([6.25, 0.725, 0.45]), pad0, T([0])([1.75]), semisphere, T([0])([0.25]), pad0]);
+  //DRAW(mouse_pad);
+
+  //front
+  //front surfaces
+  var points008 = [[0.45, 3.2, 0], [0.1, 3.2, 0], [0.1, 3.2, 0], [0.1, 3.2+0.5, 0.64]];
+  var points009 = [[0.45, 3.2+1, 1.28], [0.1, 3.2+1, 1.28],  [0.1, 3.2+1, 1.28], [0.1, 3.2+0.4, 0.5]];
+  var surf014 = bs2([points008, points009]);
+  var surf015 = SIMPLICIAL_COMPLEX([[0.45, 3.2, 0], [0.45, 3.2+0.08, 0.1], [0.7+16, 3.2+0.08, 0.1], [0.7+16, 3.2, 0]])([[0, 1, 2], [1, 2, 3]]);
+  var points010 = [[16.7, 3.2, 0], [17.05, 3.2, 0], [17.05, 3.2, 0], [17.05, 3.2+0.5, 0.64]];
+  var points011 = [[16.7, 3.2+1,  1.28], [17.05, 3.2+1,  1.28],  [17.05, 3.2+1,  1.28], [17.05, 3.2+0.4, 0.5]];
+  var surf016 = bs2([points010, points011]);
+  var surf017 = bs2([points009, points011]);
+  //front lights
+  var light0 = R([1, 2])([-PI/2])(CYLINDER(0.05, 0.01)([8, 1]));
+  var lights = STRUCT([T([0, 1, 2])([16.7, 3.2+0.54, 0.7]), R([1, 2])([-PI/4.75]), 
+    COLOR(LIGHTRED)(light0), T([2])([0.15]), COLOR(YELLOW)(light0), T([2])([0.15]), COLOR(LIGHTGREEN)(light0)]);
+  var front = STRUCT([lights, COLOR(RED), surf014, surf015, surf016, surf017]);
+  //DRAW(front);
+
+  //left-side surfaces
+  var points012 = [[0.45, 3.2+7,  1.28], [0.1, 3.2+7, 1.28],  [0.1, 3.2+7,  1.28], [0.1, 3.2+0.5+7, 0.64]];
+  var points013 = [[0.45, 3.2+7+1, 0], [0.1, 3.2+7+1, 0], [0.1, 3.2+7+1, 0], [0.1, 3.2+7+0.4, 0.64+0.14]];
+  var surf018 = bs2([points013, points008]);
+  var surf019 = bs2([points012, points009]);
+  var points014 = [[0.45, 3.2+7+1+0.5, 0], [0.1, 3.2+7+1+0.5, 0], [0.1, 3.2+7+1+0.5, 0], [0.1, 3.2+7+0.4+0.5, 0.64+0.14]];
+  var surf020 = bs2([points014, points013]);
+  var points015 = [[0.45, 3.2+7+0.25,  0.96], [0.1, 3.2+7+0.25, 0.96],  [0.1, 3.2+7+0.25, 0.96], [0.1, 3.2+0.4+7, 0.64]];
+  var points016 = [[0.45, 3.2+7+0.75,  0.96], [0.1, 3.2+7+0.75, 0.96],  [0.1, 3.2+7+0.75, 0.96], [0.1, 3.2+0.4+7+0.5, 0.64+0.14]];
+  var surf021 = bs2([points015, points016]);
+  var points017 = [[0.125, 3.2+7+0.9+0.4, 0.14], [0.19, 3.2+7+1+0.4, 0], [0.21, 3.2+7+1+0.4, 0], [0.45, 3.2+7+1+0.4, 0], ];
+  var points018 = [[0.125, 3.2+7+1+0.5+1, 0.14], [0.19, 3.2+7+1+0.5+1, 0], [0.21, 3.2+7+1+0.5+1, 0], [0.45, 3.2+7+1+0.5+1, 0]];
+  var surf022 = bs2([points017, points018]);
+  var points019 = [[0.45, 3.2+7+1+0.3+1, 1.28], [0.1, 3.2+7+1+0.3+1, 1.28],  [0.1, 3.2+7+1+0.3+1, 1.28], [0.125, 3.2+7+1+0.1+1, 0.14]];
+  var points020 = [[0.45, 3.2+7+1+0.5+1, 1.28], [0.1, 3.2+7+1+0.5+1, 1.28],  [0.1, 3.2+7+1+0.5+1, 1.28], [0.125, 3.2+7+1+0.5+1, 0.14]];
+  var surf023 = bs2([points019, points020]);
+  var left_surf = STRUCT([COLOR(RED), surf018, surf019, surf020, surf021, surf022, surf023]);
+  //DRAW(left_surf);
+
+  //right-side surfaces
+  var points021 = [[16.7, 3.2+7,  1.28], [17.05, 3.2+7, 1.28],  [17.05, 3.2+7,  1.28], [17.05, 3.2+0.5+7, 0.64]];
+  var points022 = [[16.7, 3.2+7+1, 0], [17.05, 3.2+7+1, 0], [17.05, 3.2+7+1, 0], [17.05, 3.2+7+0.4, 0.64+0.14]];
+  var surf024 = bs2([points022, points010]);
+  var surf025 = bs2([points021, points011]);
+  var points023 = [[16.7, 3.2+7+1+0.5, 0], [17.05, 3.2+7+1+0.5, 0], [17.05, 3.2+7+1+0.5, 0], [17.05, 3.2+7+0.4+0.5, 0.64+0.14]];
+  var surf026 = bs2([points023, points022]);
+  var points024 = [[16.7, 3.2+7+0.25,  0.96], [17.05, 3.2+7+0.25, 0.96],  [17.05, 3.2+7+0.25, 0.96], [17.05, 3.2+0.4+7, 0.64]];
+  var points025 = [[16.7, 3.2+7+0.75,  0.96], [17.05, 3.2+7+0.75, 0.96],  [17.05, 3.2+7+0.75, 0.96], [17.05, 3.2+0.4+7+0.5, 0.64+0.14]];
+  var surf027 = bs2([points024, points025]);
+  var points026 = [[17.025, 3.2+7+0.9+0.4, 0.14], [16.96, 3.2+7+1+0.4, 0], [16.94, 3.2+7+1+0.4, 0], [16.7, 3.2+7+1+0.4, 0]];
+  var points027 = [[17.025, 3.2+7+1+0.5+1, 0.14], [16.96, 3.2+7+1+0.5+1, 0], [16.94, 3.2+7+1+0.5+1, 0], [16.7, 3.2+7+1+0.5+1, 0]];
+  var surf028 = bs2([points026, points027]);
+  var points028 = [[16.7, 3.2+7+1+0.3+1, 1.28], [17.05, 3.2+7+1+0.3+1, 1.28],  [17.05, 3.2+7+1+0.3+1, 1.28], [17.025, 3.2+7+1+0.1+1, 0.14]];
+  var points029 = [[16.7, 3.2+7+1+0.5+1, 1.28], [17.05, 3.2+7+1+0.5+1, 1.28],  [17.05, 3.2+7+1+0.5+1, 1.28], [17.025, 3.2+7+1+0.5+1, 0.14]];
+  var surf029 = bs2([points028, points029]);
+  var right_surf = STRUCT([COLOR(RED), surf024, surf025, surf026, surf027, surf028, surf029]);
+  //DRAW(right_surf);
+
+  //back 
+  //back surfaces
+  var surf030 = bs2([points020, points029]);
+  var surf031 = bs2([points027, points018]);
+  //handle
+  var handle00 = CUBOID([7.5, 0.4, 0.6]);
+  var handle01 = T([0, 2])([-1.25, 0.05])(CUBOID([1.25, 0.3, 0.5]));
+  var handle02 = CUBOID([1.5, 0.1, 0.1]);
+  var handle03 = CUBOID([0.1, 0.1, 1]);
+  var handle04 = STRUCT([COLOR(BLACK), T([0, 1, 2])([-1.2, 0.1,-0.2]), handle02, handle03, 
+    T([0])([1.5])(handle03), T([2])([1-0.1])(handle02)]);
+  var handle = STRUCT([T([0, 1, 2])([4.5, 3.2+7+1+0.5+1, 0.35]), handle04, T([0])([7.5+0.8])(handle04), COLOR(RED), 
+    handle00, handle01, T([0])([1.25+7.5])(handle01)]);
+  var back = STRUCT([handle, COLOR(RED), surf030, surf031]);
+  //DRAW(back);
+
+  //bottom 
+  var points030 = [[0.45, 3.2, 0], [0.7+16, 3.2, 0], [0.45, 3.2+7+1+0.5+1, 0], [16.7, 3.2+7+1+0.5+1, 0]];
+  var bottom_surf = COLOR(RED)(SIMPLICIAL_COMPLEX(points030)([[0, 1, 2], [1, 2, 3]]));
+  var c0 = T([0, 1, 2])([0.5, 4, -0.2])(COLOR(BLACK)(CUBOID([0.8, 0.7, 0.2])));
+  var bottom = STRUCT([bottom_surf, c0, T([1])([7.5])(c0), T([0])([15.35]), c0, T([1])([7.5])(c0)]);
+  //DRAW(bottom);
+
+  //top 
+  var points031 = [[0.45, 3.2+7,  1.28], [16.7, 3.2+7,  1.28], [0.45, 3.2+1, 1.28], [16.7, 3.2+1,  1.28]];
+  var surf032 = SIMPLICIAL_COMPLEX(points031)([[0, 1, 2], [1, 2, 3]]);
+  var surf033 = bs2([points019, points028]);
+  var points032 = [[16.7, 3.2+7+1+0.3+1, 1.28], [16.7, 3.2+7+1+0.5+1, 1.28], [0.45, 3.2+7+1+0.3+1, 1.28], [0.45, 3.2+7+1+0.5+1, 1.28]];
+  var surf034 = SIMPLICIAL_COMPLEX(points032)([[0, 1, 2], [1, 2, 3]]);
+  var points033 = [[17.025, 3.2+7+1+0.1+1, 0.14], [17.025, 3.2+7+0.9+0.4, 0.14], [0.125, 3.2+7+0.9+0.4, 0.14], [0.125, 3.2+7+1+0.1+1, 0.14]];
+  var surf035 = SIMPLICIAL_COMPLEX(points033)([[0, 1, 2], [0, 2, 3]]);
+  var surf036 = bs2([points016, points025]);
+  var surf037 = bs2([points014, points023]);
+  var surf038 = bs2([points021, points012]);
+  var points034 = [[16.7, 3.2+7+0.25,  0.96], [16.7, 3.2+7+0.75,  0.96], [0.45, 3.2+7+0.25,  0.96], [0.45, 3.2+7+0.75,  0.96]];
+  var surf039 = SIMPLICIAL_COMPLEX(points034)([[0, 1, 2], [1, 2, 3]]);
+  //top holes
+  var hole0 = COLOR(BLACK)(CUBOID([2, 0.1, 0.01]));
+  var holes = T([0, 1, 2])([9, 3.2+6.5, 1.3])(STRUCT(REPLICA(11)([R([0, 1])([-PI/12]), T([1])([-0.25]), hole0])));
+  var top_ = STRUCT([holes, COLOR(RED), surf032, surf033, surf034, surf035, surf036, surf037, surf038, surf039]);
+  //DRAW(top_);
+
+  //cylinders
+  var cyl00 = R([0, 2])([-PI/2])(CYLINDER(0.55, 0.5)([16, 1]));
+  var cyl01 = T([2])([0.05])(R([0, 2])([-PI/2])(CYLINDER(0.45, 16.3)([16, 1])));
+  var cylinders = STRUCT([COLOR(BLACK), T([0, 1, 2])([0.65, 3.2+7+1+0.6, 0.6+0.14]), cyl00, T([0])([15.8]), cyl01,
+    T([0])([0.5]), cyl00]);
+  //DRAW(cylinders)
+
+  //cylinder supports
+
+  var points035 = [[0.7, 3.2+7+0.8,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96+0.3]];
+  var points036 = [[0.7, 3.2+7+0.7+0.5+1.1,  0.96], [0.7, 3.2+7+0.75+0.25+1.1,  0.96], [0.7, 3.2+7+0.75+1.1+0.25,  0.96], [0.7, 3.2+7+0.75+1.1+0.25,  0.96+0.3]];
+  var surf040 = bs2([points035, points036]);
+  var points037 = [[1, 3.2+7+0.8,  0.96], [1, 3.2+7+0.75+0.25,  0.96], [1, 3.2+7+0.75+0.25,  0.96], [1, 3.2+7+0.75+0.25,  0.96+0.3]];
+  var points038 = [[1, 3.2+7+0.7+0.5+1.1,  0.96], [1, 3.2+7+0.75+0.25+1.1,  0.96], [1, 3.2+7+0.75+1.1+0.25,  0.96], [1, 3.2+7+0.75+1.1+0.25,  0.96+0.3]];
+  var surf041 = bs2([points037, points038]);
+  var surf042 = bs2([points035, points037]);
+  var surf043 = bs2([points036, points038]);
+  var surf044 = bs2([[[0.7, 3.2+7+0.75+0.25,  0.96+0.3], [0.7, 3.2+7+0.75+1.1+0.25,  0.96+0.3]], 
+    [[1, 3.2+7+0.75+0.25,  0.96+0.3], [1, 3.2+7+0.75+1.1+0.25,  0.96+0.3]]]);
+  var c1 = T([0, 1, 2])([0.7, 3.2+7+0.8, 0])(CUBOID([0.3, 1.5, 1]));
+  var cyl_supp = STRUCT([COLOR(RED), c1, surf040, surf041, surf042, surf043, surf044, 
+    T([0])([15.4]), c1, surf040, surf041, surf042, surf043, surf044]);
+  //DRAW(cyl_supp);
+
+  //monitor 
+  var display = COLOR(BLACK)(CUBOID([14, 0.1, 5]));
+  var displayframe0 = COLOR(RED)(CUBOID([14.2, 0.3, 0.15]));
+  var displayframe1 = COLOR(RED)(CUBOID([10, 0.3, 0.25]));
+  var monitor = STRUCT([T([0, 1, 2])([1.5, 3.2+7+1+0.6, 1]), R([1, 2])([-PI/7]), display, 
+    T([0, 1, 2])([-0.1, -0.1, 5]), displayframe0, T([0, 2])([2.1, 0.15]), displayframe1]);
+  //DRAW(monitor);
+
+  return STRUCT([keyboard, top_, bottom, left_surf, right_surf, cylinders, cyl_supp, monitor, front, back, mouse_pad])
+}
+
+var nu_val = new_valentine();
+
+DRAW(nu_val);
+
+        </code>
+      </pre>
+    </div>
+
+
+<div id="py_source" style="display:none" name="py_source">
+<!--SIDE MENU-->
+  <div id='side_menu' style="font-size:12px">
+    <ul>
+      <li><a href="#support_py">Support</a></li>
+
+    </ul>
+  </div>
+
+      <pre><code><a name='support_py' class='anchor' href="#support_py"></a>
+
+      </pre></code></div>
+
+      </section>
+    </div>
+
+     <!-- script plasm -->
+        <script src="support/jquery.js"></script>
+        <script src="support/mustache.js"></script>
+        <script src="support/numeric.js"></script>
+        <script src="support/director.js"></script>
+        <script src="support/three.js"></script>
+        <script src="support/three-detector.js"></script>
+        <script src="support/three-frame.js"></script>
+        <script src="support/three-stats.js"></script>
+        <script src="support/three-trackball.js"></script>
+        <script src="node_modules/simplexn.js/lib/simplexn.js"></script>
+        <script src="node_modules/f.js/lib/f.js"></script> 
+        <script src="lib/plasm.js"></script>
+        <script src="lib/plasm-fun.js"></script>
+
+            <script type="text/javascript">
+    var js_div = document.getElementById("js_source");
+    var py_div = document.getElementById("py_source");
+
+    var js_a = document.getElementById("showjs");
+    var py_a = document.getElementById("showpy");
+
+    js_a.style.color = "#999999";
+    py_a.style.color = "#ff0000";
+
+    var hidejs = function(){
+      js_div.style.display = 'none';
+      js_a.style.color = "#ff0000";
+    }
+
+    var showpy = function(){
+      hidejs();
+      py_div.style.display = 'block';
+      py_a.style.color = "#999999";
+    }
+
+    var showjs = function(){
+      hidepy();
+      js_div.style.display = 'block';
+      js_a.style.color = "#999999";
+    }
+
+    var hidepy = function(){
+      py_div.style.display = 'none';
+      py_a.style.color = "#ff0000";
+    }
+    </script>
+
+ <!-- FOOTER  -->
+    <div id='footer_wrap' class='outer'>
+      <footer class='inner'>
+        <p>Published with <a href='http://pages.github.com'>GitHub Pages</a> - Copyright® <a href="../aboutme.html">Antonello Gatto</a></p>
+      </footer>
+    </div>
+    
+
+  </body>
+  </html>

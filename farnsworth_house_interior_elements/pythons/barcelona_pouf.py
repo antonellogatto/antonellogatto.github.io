@@ -1,5 +1,3 @@
-#trasformazioni aggiustate
-
 BLACK = [50/255, 50/255, 50/255];
 BROWN = [202/255, 141/255, 72/255];
 

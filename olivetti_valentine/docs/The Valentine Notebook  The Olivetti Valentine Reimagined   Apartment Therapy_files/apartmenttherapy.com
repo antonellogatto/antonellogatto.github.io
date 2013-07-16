@@ -1,0 +1,1 @@
+PARSELY.pInit({"apikey":"apartmenttherapy.com","customizations":null,"bundle":"/code/slim_v02.js","settings":{"debug":false,"widget":false,"tracker":true},"uuid":"7CC37421-6898-4201-A9CD-41A3C7CE4386"});

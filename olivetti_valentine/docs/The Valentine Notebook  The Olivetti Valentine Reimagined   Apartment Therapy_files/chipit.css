@@ -1,0 +1,17 @@
+﻿.sw-chip-btn
+{
+    height:20px;
+    width:62px;
+    background: transparent url(bg.png) no-repeat left top;
+    display:block;
+    cursor:pointer;
+}
+.sw-chip-btn:hover
+{
+    background-position: -64px 0px;
+}
+
+.sw-chip-btn:active
+{
+    background-position: -128px 0px;
+}
