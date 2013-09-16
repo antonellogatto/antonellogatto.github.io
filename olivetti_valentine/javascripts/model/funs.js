@@ -2,7 +2,7 @@
 
 var domain1D = DOMAIN([[0, 1]])([8]);
 var domain2D = DOMAIN([[0, 1],[0, 1]])([16, 16]);
-var detailed_domain2D = DOMAIN([[0, 1], [0, 1]])([32, 32]);
+var detailed_domain2D = DOMAIN([[0, 1], [0, 1]])([64, 64]);
 var domcir0 = PROD1x1([INTERVALS(2*PI)(30), INTERVALS(1)(12)]);
 
 var CYLINDER = function(r,h){
@@ -44,4 +44,31 @@ var Circum = function(h, r){
     return [r*COS(v[0]), r*SIN(v[0]), h];
   }
   return Circum0;
+}
+
+
+//generateNUBS() support function
+var generateKnots = function(controlPoints){
+  lun = controlPoints.length + 2 + 1;
+  var nodeSeq = [];
+  nodeSeq[0] = 0;
+  nodeSeq[1] = 0;
+  nodeSeq[2] = 0;
+  for (i = 3; i <= lun - 4 ; i++) {
+    nodeSeq[i] = i-2;
+  };
+  nodeSeq[lun-1] = i-2;
+  nodeSeq[lun-2] = i-2;
+  nodeSeq[lun-3] = i-2;
+  return nodeSeq;
+}
+
+//the function create an array tha contains a mapped curve, defined by nubs
+//curve = [0], nubs = [1]
+var generateNUBS = function(controlPoints){
+  var domain = INTERVALS(1)(50);
+  var knots = generateKnots(controlPoints);
+  var nubs = NUBS(S0)(2)(knots)(controlPoints);
+  var curve = MAP(nubs)(domain);
+  return [curve, nubs];
 }

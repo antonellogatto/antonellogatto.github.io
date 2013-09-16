@@ -171,12 +171,11 @@ var new_valentine = function(){
 	//cylinders
 	var cyl00 = R([0, 2])([-PI/2])(CYLINDER(0.55, 0.5)([16, 1]));
 	var cyl01 = T([2])([0.05])(R([0, 2])([-PI/2])(CYLINDER(0.45, 16.3)([16, 1])));
-	var cylinders = STRUCT([COLOR(BLACK), T([0, 1, 2])([0.65, 3.2+7+1+0.6, 0.6+0.14]), cyl00, T([0])([15.8]), cyl01,
+	var cylinders = STRUCT([COLOR(BLACK), T([0, 1, 2])([0.67, 3.2+7+1+0.6, 0.6+0.14]), cyl00, T([0])([15.82]), cyl01,
 		T([0])([0.5]), cyl00]);
-	//DRAW(cylinders)
+	//DRAW(cylinders);
 
 	//cylinder supports
-
 	var points035 = [[0.7, 3.2+7+0.8,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96], [0.7, 3.2+7+0.75+0.25,  0.96+0.3]];
 	var points036 = [[0.7, 3.2+7+0.7+0.5+1.1,  0.96], [0.7, 3.2+7+0.75+0.25+1.1,  0.96], [0.7, 3.2+7+0.75+1.1+0.25,  0.96], [0.7, 3.2+7+0.75+1.1+0.25,  0.96+0.3]];
 	var surf040 = bs2([points035, points036]);
@@ -200,7 +199,62 @@ var new_valentine = function(){
 		T([0, 1, 2])([-0.1, -0.1, 5]), displayframe0, T([0, 2])([2.1, 0.15]), displayframe1]);
 	//DRAW(monitor);
 
-	return STRUCT([keyboard, top_, bottom, left_surf, right_surf, cylinders, cyl_supp, monitor, front, back, mouse_pad])
+//box
+//side box surfaces
+var points018 = [[0.125, 3+7+1+0.5+1+0.5, 0.14], [0.19, 3+7+1+0.5+1+0.5, 0], [0.21, 3+7+1+0.5+1+0.5, 0], [0.45, 3+7+1+0.5+1+0.5, 0]];
+var points039 = [[0.125-0.05, 3+7+1+0.5+1+0.5, 0.14], [0.19-0.1, 3+7+1+0.5+1+0.5, 0], [0.21, 3+7+1+0.5+1+0.5, 0-0.1], [0.45, 3+7+1+0.5+1+0.5, 0-0.05]];
+var surf045 = bs2([points018, points039]);
+var points020 = [[0.45, 3+7+1+0.5+1+0.5, 1.28], [0.1, 3+7+1+0.5+1+0.5, 1.28],  [0.1, 3+7+1+0.5+1+0.5, 1.28], [0.125, 3+7+1+0.5+1+0.5, 0.14]];
+var points040 = [[0.45, 3+7+1+0.5+1+0.5, 1.28+0.05], [0.1, 3+7+1+0.5+1+0.5, 1.28+0.1],  [0.1-0.1, 3+7+1+0.5+1+0.5, 1.28], [0.125-0.05, 3+7+1+1+0.5+0.5, 0.14]];
+var surf046 = bs2([points020, points040]);
+var points027 = [[17.025, 3+7+1+0.5+1+0.5, 0.14], [16.96, 3+7+1+0.5+1+0.5, 0], [16.94, 3+7+1+0.5+1+0.5, 0], [16.7, 3+7+1+0.5+1+0.5, 0]];
+var points041 = [[17.025+0.05, 3+7+1+0.5+1+0.5, 0.14], [16.96+0.1, 3+7+1+0.5+1+0.5, 0], [16.94, 3+7+1+0.5+1+0.5, 0-0.1], [16.7, 3+7+1+0.5+1+0.5, 0-0.05]];
+var surf047 = bs2([points027, points041]);
+var points029 = [[16.7, 3+7+1+0.5+1+0.5, 1.28], [17.05, 3+7+1+0.5+1+0.5, 1.28],  [17.05, 3+7+1+0.5+1+0.5, 1.28], [17.025, 3+7+1+0.5+1+0.5, 0.14]];
+var points042 = [[16.7, 3+7+1+0.5+1+0.5, 1.28+0.05], [17.05, 3+7+1+0.5+1+0.5, 1.28+0.1],  [17.05+0.1, 3+7+1+0.5+1+0.5, 1.28], [17.025+0.05, 3+7+1+0.5+1+0.5, 0.14]];
+var surf048 = bs2([points029, points042]);
+
+var points043 = [[0.125, 3, 0.14], [0.19, 3, 0], [0.21, 3, 0], [0.45, 3, 0]];
+var points044 = [[0.125-0.05, 3, 0.14], [0.19-0.1, 3, 0], [0.21, 3, 0-0.1], [0.45, 3, 0-0.05]];
+var surf049 = bs2([points043, points044]);
+var points045 = [[0.45, 3, 1.28], [0.1, 3, 1.28],  [0.1, 3, 1.28], [0.125, 3, 0.14]];
+var points046 = [[0.45, 3, 1.28+0.05], [0.1, 3, 1.28+0.1],  [0.1-0.1, 3, 1.28], [0.125-0.05, 3, 0.14]];
+var surf050 = bs2([points045, points046]);
+var points047 = [[17.025, 3, 0.14], [16.96, 3, 0], [16.94, 3, 0], [16.7, 3, 0]];
+var points048 = [[17.025+0.05, 3, 0.14], [16.96+0.1, 3, 0], [16.94, 3, 0-0.1], [16.7, 3, 0-0.05]];
+var surf051 = bs2([points047, points048]);
+var points049 = [[16.7, 3, 1.28], [17.05, 3, 1.28],  [17.05, 3, 1.28], [17.025, 3, 0.14]];
+var points050 = [[16.7, 3, 1.28+0.05], [17.05, 3, 1.28+0.1],  [17.05+0.1, 3, 1.28], [17.025+0.05, 3, 0.14]];
+var surf052 = bs2([points049, points050]);
+
+var surf053 = bs2([points018, points043]);
+var surf054 = bs2([points039, points044]);
+var surf055 = bs2([points020, points045]);
+var surf056 = bs2([points040, points046]);
+var surf057 = bs2([points027, points047]);
+var surf058 = bs2([points041, points048]);
+var surf059 = bs2([points029, points049]);
+var surf060 = bs2([points042, points050]);
+//top
+var surf061 = T([0, 1, 2])([0.45, 3, 1.28])(CUBOID([16.25, 10, 0.05]));
+//bottom box
+var surf062 = CUBOID([0.03, 10, 0.2]);
+var bottom_box_vertical_surfs = STRUCT([T([0, 1, 2])([0.44, 3, -0.2]), surf062, T([0])([0.9]), 
+	surf062, T([0])([15.25-0.8]), surf062, T([0])([0.9]), surf062]);
+var bottom_box_horizontal_surfs = STRUCT([T([0, 1, 2])([0.44, 3, -0.25]), CUBOID([0.93, 10, 0.05]), 
+	T([0, 2])([0.9, 0.2]), CUBOID([14.45, 10, 0.05]), T([0, 2])([14.45, -0.2]), CUBOID([0.93, 10, 0.05])]);
+//back surfaces
+var surf063 = bs2([points043, points047]);
+var surf064 = bs2([points045, points049]);
+var surf065 = SIMPLICIAL_COMPLEX([[0.44, 3, -0.2], [0.44+0.9, 3, -0.2], [0.44, 3, 0], [0.44+0.9, 3, 0]])([[0, 1, 2], [1, 2, 3]]);
+
+var box = STRUCT([COLOR(RED), T([1])([-15]), surf045, surf046, surf047, surf048,
+	surf049, surf050, surf051, surf052, surf053, surf054, surf056, 
+	surf057, surf058, surf059, surf060, surf061, bottom_box_vertical_surfs, bottom_box_horizontal_surfs, 
+	T([1])([0.05]), surf063, surf064, surf065, T([0])([15.35]), surf065]);
+//DRAW(box);
+
+	return STRUCT([keyboard, top_, bottom, left_surf, right_surf, cylinders, cyl_supp, monitor, front, back, mouse_pad, box])
 }
 
 var nu_val = new_valentine();
