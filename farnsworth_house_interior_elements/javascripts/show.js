@@ -41,6 +41,10 @@ function view(){
     canvas.setAttribute("height","500px");
     showModel();
     document.getElementById("showbtn").disabled = true;
+    
+    canvas.setAttribute("onmouseover","block()");
+    canvas.setAttribute("onmouseout","unblock()");
+
   }
 
 }
@@ -605,4 +609,14 @@ DRAW(barcelona_chair0);
 var barcelona_chair1 =  T([0,1,2])([47, 5.1, 76])(R([0, 2])([-PI/2])(S([0,1,2])([1.25,1.25,1.25])(barcelona_chair(BROWN))));
 DRAW(barcelona_chair1);
 
+}
+
+function block(){
+  var b = document.body;
+  b.style.overflow = "hidden";
+}
+
+function unblock(){
+  var b = document.body;
+  b.style.overflow = "auto";
 }
