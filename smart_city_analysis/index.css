@@ -1,0 +1,203 @@
+html, body {
+	font-family: 'Montserrat', 'sans-serif';
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	background-color: #ecf0f1;
+}
+
+#container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -80px; 
+	/* margine negativo = footer height*/ 
+}
+
+#header {
+	height: 100px;
+	background-color: #bc0018;
+	width: 100%;
+	margin: 0;
+	color: #ecf0f1;
+}
+
+#header-title { 
+	display: inline-block;
+	height: auto;
+	color: #ecf0f1;
+	margin: 10px;
+	font-weight: 700;
+	font-size: 24px;
+}
+
+#header-logo {
+	float: right;
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+#header-logo img {
+	height: 100px;
+	margin: 0;
+	padding: 0;
+}
+
+#content { 
+	padding: 15px; 
+	background-color: #ecf0f1;
+	margin: 0 auto;
+	width: 1100px;
+}
+
+#map-canvas {
+	margin: 0 auto;
+}
+
+#visualization-wrapper {
+	margin: 100px auto;
+	padding: 10px 0;
+	width: 100%;
+	clear: both;
+}
+
+#piechart-visualization {
+	position: relative;
+	display: inline-block;
+	width: 300px;
+}
+
+#treemap-visualization {
+	position: relative;
+	display: inline-block;
+	width: 350px;
+	height: 300px;
+}
+
+#barchart-visualization {
+	position: relative;
+	display: inline-block;
+	width: 440px;
+}
+
+#legend {
+	background: #FFF;
+	margin: 10px;
+	padding: 5px;
+	width: 150px;
+}
+
+#legend p {
+	font-weight: bold;
+	margin-top: 3px;
+}
+
+#legend div {
+	clear: both;
+}
+
+.color {
+	height: 12px;
+	width: 12px;
+	margin-right: 3px;
+	float: left;
+	display: block;
+}
+
+#sector-sel-wrapper {
+	padding: 10px 0;
+	width: 100%;
+}
+
+#sector-sel {
+	font-size: 20px;
+	padding: 5px 10px;
+	width: 530px;
+	height: 34px;
+	overflow: hidden;
+	border: 1px solid #bdc3c7;
+	border-radius: 5px;
+	float: left;
+}
+
+#sector-sel select {
+	background: transparent;
+	margin: 0 10px;
+	padding: 0 5px;
+	width: 200px;
+	font-size: 18px;
+	line-height: 1;
+	border: 0;
+	border-radius: 5px;
+	height: 34px;
+	background: url(./images/down.png) no-repeat right #ecf0f1;
+	-webkit-appearance: none;
+}
+
+#sector-logo {
+	width: 75px;
+	float: right;
+	margin: 5px 5px 0 0;
+}
+
+#rome-logo {
+	width: 200px;
+	margin: 5px 5px 0 0;
+	float:right;
+}
+
+#preferences-wrapper {
+	display: inline-block;
+	clear: both;
+	width: 100%;
+	height: 150px;
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #bdc3c7;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+#preferences p {
+	margin: auto;
+	font-size: 18px;
+	text-align: justify;
+}
+
+#footer, #push {
+	height: 80px;
+	clear: both;
+}
+
+#footer {
+	background-color: #bc0018;
+}
+
+#footer-copy { 
+	display: inline-block;
+	height: auto;
+	vertical-align: baseline;
+	color: #ecf0f1;
+	margin: 10px;
+}
+
+#copy {
+	font-size: 14px;
+	line-height: 40px;
+	font-weight: 100;
+}
+
+#footer-logo {
+	float: right;
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+#footer-logo img {
+	height: 50px;
+	margin: 10px 5px;
+	padding: 2px;
+	background-color: #ecf0f1;
+}
